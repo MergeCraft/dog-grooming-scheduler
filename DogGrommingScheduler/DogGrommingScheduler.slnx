@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AplicationLogic/AplicationLogic.csproj" />
+  <Project Path="BusinessLogic/BusinessLogic.csproj" />
+  <Project Path="DataAccess/DataAccess.csproj" />
+  <Project Path="DogGrommingScheduler/WebAPI.csproj" />
+</Solution>
