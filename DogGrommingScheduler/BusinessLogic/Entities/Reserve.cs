@@ -4,14 +4,14 @@ using System.Text;
 
 namespace BusinessLogic.Entities
 {
-    internal enum DogSize
+    public enum DogSize
     {
         Small,
         Medium,
         Large
     }
 
-    internal class Reserve
+    public class Reserve
     {
         public Guid Id { get; set; }
 

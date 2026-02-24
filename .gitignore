@@ -1,0 +1,40 @@
+# ── Visual Studio ────────────────────────────────
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ── Build outputs ────────────────────────────────
+bin/
+obj/
+
+# ── NuGet ────────────────────────────────────────
+*.nupkg
+project.lock.json
+project.nuget.cache
+project.assets.json
+packages/
+
+# ── .NET ─────────────────────────────────────────
+*.cache
+*.AssemblyInfo.cs
+*.AssemblyInfoInputs.cache
+*.GeneratedMSBuildEditorConfig.editorconfig
+*.GlobalUsings.g.cs
+
+# ── Configuración sensible ───────────────────────
+# OJO: appsettings.json tiene la Jwt:Key y la connection string
+# Si trabajas en equipo, no subas este archivo
+appsettings.json
+
+# Crea un appsettings.Example.json sin valores reales para el equipo
+# appsettings.Example.json ← ese sí se sube
+
+# ── Logs ─────────────────────────────────────────
+*.log
+logs/
+
+# ── OS ───────────────────────────────────────────
+.DS_Store
+Thumbs.db

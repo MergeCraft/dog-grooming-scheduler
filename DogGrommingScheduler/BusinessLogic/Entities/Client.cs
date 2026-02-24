@@ -4,13 +4,8 @@ using System.Text;
 
 namespace BusinessLogic.Entities
 {
-    internal class Client
+    public class Client : User
     {
-        public Guid Id { get; set; }
-
-        // Nombre
-        public string Name { get; set; }
-
         // Telefono
         public string Phone { get; set; }
 

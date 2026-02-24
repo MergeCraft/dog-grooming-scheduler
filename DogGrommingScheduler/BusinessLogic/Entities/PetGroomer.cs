@@ -4,10 +4,8 @@ using System.Text;
 
 namespace BusinessLogic.Entities
 {
-    internal class PetGroomer
+    public class PetGroomer : User
     {
-        // Nombre
-        public string Name { get; set; }
 
         // Apellido
         public string LastName { get; set; }
