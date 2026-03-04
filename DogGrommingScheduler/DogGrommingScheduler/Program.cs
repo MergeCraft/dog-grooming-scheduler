@@ -1,4 +1,19 @@
+using Microsoft.AspNetCore.Identity.Data;
+
+using Resend;
+using AplicationLogic.Interfaces;
+using AplicationLogic.Services.Email;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<ResendClientOptions>(options =>
+{
+    options.ApiToken = builder.Configuration["Resend:ApiKey"]!;
+});
+
+//Dependencies Injection
+builder.Services.AddTransient<IResend, ResendClient>();
+builder.Services.AddScoped<IEmailService, ResendEmailService>();
 
 // Add services to the container.
 

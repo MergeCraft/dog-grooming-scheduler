@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "lz7s04sQzhE=",
+  "dgSpecHash": "zWaNXD84CDw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\AplicationLogic.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\AplicationLogic.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tator\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\8.0.20\\microsoft.aspnetcore.webutilities.8.0.20.nupkg.sha512",
+    "C:\\Users\\tator\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\tator\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "C:\\Users\\tator\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\tator\\.nuget\\packages\\microsoft.net.http.headers\\8.0.20\\microsoft.net.http.headers.8.0.20.nupkg.sha512",
+    "C:\\Users\\tator\\.nuget\\packages\\resend\\0.2.1\\resend.0.2.1.nupkg.sha512"
+  ],
   "logs": []
 }

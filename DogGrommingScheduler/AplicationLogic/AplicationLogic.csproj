@@ -9,8 +9,11 @@
   <ItemGroup>
     <Folder Include="DTOs\" />
     <Folder Include="Services\Authentication\" />
-    <Folder Include="Services\" />
     <Folder Include="Services\Scheduler\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Resend" Version="0.2.1" />
   </ItemGroup>
 
 </Project>

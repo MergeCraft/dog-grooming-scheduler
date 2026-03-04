@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "BnEiewgFw+o=",
+  "dgSpecHash": "FFHsOTuaox8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\WebAPI.csproj",
+  "projectFilePath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\WebAPI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Santiago\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.3\\microsoft.aspnetcore.openapi.10.0.3.nupkg.sha512",
-    "C:\\Users\\Santiago\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+    "C:\\Users\\tator\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.3\\microsoft.aspnetcore.openapi.10.0.3.nupkg.sha512",
+    "C:\\Users\\tator\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\tator\\.nuget\\packages\\resend\\0.2.1\\resend.0.2.1.nupkg.sha512"
   ],
   "logs": []
 }

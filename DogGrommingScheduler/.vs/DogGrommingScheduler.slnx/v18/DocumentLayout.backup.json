@@ -3,32 +3,55 @@
   "WorkspaceRootPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2FBC5FEA-FB82-449E-8914-6CC267D01195}|DataAccess\\DataAccess.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\dataaccess\\repositories\\contextdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FBC5FEA-FB82-449E-8914-6CC267D01195}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repositories\\contextdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tator\\AppData\\Roaming\\Microsoft\\UserSecrets\\8226f2f7-3098-4e20-b695-70b4ef61000e\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{38E7D9F3-E9ED-0AE0-4FA7-F8BD18BD2256}|DogGrommingScheduler\\WebAPI.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\doggrommingscheduler\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E7D9F3-E9ED-0AE0-4FA7-F8BD18BD2256}|DogGrommingScheduler\\WebAPI.csproj|solutionrelative:doggrommingscheduler\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{05A8790D-847A-F9DA-2815-FC8BA497201B}|AplicationLogic\\AplicationLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\aplicationlogic\\services\\email\\resendemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{05A8790D-847A-F9DA-2815-FC8BA497201B}|AplicationLogic\\AplicationLogic.csproj|solutionrelative:aplicationlogic\\services\\email\\resendemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\reserve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\reserve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{05A8790D-847A-F9DA-2815-FC8BA497201B}|AplicationLogic\\AplicationLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\aplicationlogic\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{05A8790D-847A-F9DA-2815-FC8BA497201B}|AplicationLogic\\AplicationLogic.csproj|solutionrelative:aplicationlogic\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{38E7D9F3-E9ED-0AE0-4FA7-F8BD18BD2256}|DogGrommingScheduler\\WebAPI.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\doggrommingscheduler\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E7D9F3-E9ED-0AE0-4FA7-F8BD18BD2256}|DogGrommingScheduler\\WebAPI.csproj|solutionrelative:doggrommingscheduler\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\petgroomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\petgroomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{38E7D9F3-E9ED-0AE0-4FA7-F8BD18BD2256}|DogGrommingScheduler\\WebAPI.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\doggrommingscheduler\\webapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{38E7D9F3-E9ED-0AE0-4FA7-F8BD18BD2256}|DogGrommingScheduler\\WebAPI.csproj|solutionrelative:doggrommingscheduler\\webapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\businesslogic.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{B591D899-4382-40C6-ACAA-DFD8E2EF866E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\businesslogic.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45E8AD2D-F6CC-99C0-B6AF-489676982DA4}|DataAccess\\DataAccess.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\dataaccess\\repositories\\contextdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45E8AD2D-F6CC-99C0-B6AF-489676982DA4}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repositories\\contextdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\reserve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\reserve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\businesslogic.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\businesslogic.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\development\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\petgroomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\petgroomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,6 +66,83 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "secrets.json",
+              "DocumentMoniker": "C:\\Users\\tator\\AppData\\Roaming\\Microsoft\\UserSecrets\\8226f2f7-3098-4e20-b695-70b4ef61000e\\secrets.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\Users\\tator\\AppData\\Roaming\\Microsoft\\UserSecrets\\8226f2f7-3098-4e20-b695-70b4ef61000e\\secrets.json",
+              "ToolTip": "C:\\Users\\tator\\AppData\\Roaming\\Microsoft\\UserSecrets\\8226f2f7-3098-4e20-b695-70b4ef61000e\\secrets.json",
+              "RelativeToolTip": "..\\..\\..\\Users\\tator\\AppData\\Roaming\\Microsoft\\UserSecrets\\8226f2f7-3098-4e20-b695-70b4ef61000e\\secrets.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-04T20:32:31.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "DogGrommingScheduler\\WeatherForecast.cs",
+              "ToolTip": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\WeatherForecast.cs",
+              "RelativeToolTip": "DogGrommingScheduler\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T20:30:28.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WebAPI",
+              "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\WebAPI.csproj",
+              "RelativeDocumentMoniker": "DogGrommingScheduler\\WebAPI.csproj",
+              "ToolTip": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\WebAPI.csproj",
+              "RelativeToolTip": "DogGrommingScheduler\\WebAPI.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-04T20:19:13.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\Program.cs",
+              "RelativeDocumentMoniker": "DogGrommingScheduler\\Program.cs",
+              "ToolTip": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\Program.cs",
+              "RelativeToolTip": "DogGrommingScheduler\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T20:08:53.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\Interfaces\\IEmailService.cs",
+              "RelativeDocumentMoniker": "AplicationLogic\\Interfaces\\IEmailService.cs",
+              "ToolTip": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\Interfaces\\IEmailService.cs",
+              "RelativeToolTip": "AplicationLogic\\Interfaces\\IEmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswAYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T19:54:30.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ResendEmailService.cs",
+              "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\Services\\Email\\ResendEmailService.cs",
+              "RelativeDocumentMoniker": "AplicationLogic\\Services\\Email\\ResendEmailService.cs",
+              "ToolTip": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\Services\\Email\\ResendEmailService.cs",
+              "RelativeToolTip": "AplicationLogic\\Services\\Email\\ResendEmailService.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAwwCgAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T19:46:39.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "ContextDB.cs",
               "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\Repositories\\ContextDB.cs",
               "RelativeDocumentMoniker": "DataAccess\\Repositories\\ContextDB.cs",
@@ -55,33 +155,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "Reserve.cs",
               "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\Reserve.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Entities\\Reserve.cs",
               "ToolTip": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\Reserve.cs",
               "RelativeToolTip": "BusinessLogic\\Entities\\Reserve.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAEBQwBEAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-23T21:02:52.538Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Client.cs",
               "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\Client.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Entities\\Client.cs",
               "ToolTip": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\Client.cs",
               "RelativeToolTip": "BusinessLogic\\Entities\\Client.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAWwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-23T21:01:55.02Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\User.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Entities\\User.cs",
@@ -94,7 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "Schedule.cs",
               "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\Schedule.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Entities\\Schedule.cs",
@@ -107,8 +207,8 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BusinessLogic",
+              "DocumentIndex": 11,
+              "Title": "BusinessLogic.csproj",
               "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
               "RelativeDocumentMoniker": "BusinessLogic\\BusinessLogic.csproj",
               "ToolTip": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
@@ -120,7 +220,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "PetGroomer.cs",
               "DocumentMoniker": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\PetGroomer.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Entities\\PetGroomer.cs",
