@@ -32,7 +32,11 @@
         "frameworks": {
           "net10.0": {
             "targetAlias": "net10.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj": {
+                "projectPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -51,6 +55,11 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.23, )",
+              "versionCentrallyManaged": true
+            },
             "Resend": {
               "target": "Package",
               "version": "[0.2.1, )",
@@ -751,7 +760,11 @@
         "frameworks": {
           "net10.0": {
             "targetAlias": "net10.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj": {
+                "projectPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

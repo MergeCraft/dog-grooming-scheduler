@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BusinessLogic.Entities
 {
-    internal class Schedule
+    public class Schedule
     {
         public Guid Id { get; set; }
 

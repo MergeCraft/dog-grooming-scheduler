@@ -11,3 +11,6 @@ C:\development\dog-grooming-scheduler\DogGrommingScheduler\AplicationLogic\obj\D
 C:\development\dog-grooming-scheduler\DogGrommingScheduler\AplicationLogic\obj\Debug\net10.0\refint\AplicationLogic.dll
 C:\development\dog-grooming-scheduler\DogGrommingScheduler\AplicationLogic\obj\Debug\net10.0\AplicationLogic.pdb
 C:\development\dog-grooming-scheduler\DogGrommingScheduler\AplicationLogic\obj\Debug\net10.0\ref\AplicationLogic.dll
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\AplicationLogic\bin\Debug\net10.0\BusinessLogic.dll
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\AplicationLogic\bin\Debug\net10.0\BusinessLogic.pdb
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\AplicationLogic\obj\Debug\net10.0\Aplicati.54A1F62A.Up2Date

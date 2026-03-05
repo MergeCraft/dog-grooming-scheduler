@@ -9,11 +9,15 @@
   <ItemGroup>
     <Folder Include="DTOs\" />
     <Folder Include="Services\Authentication\" />
-    <Folder Include="Services\Scheduler\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Hangfire.Core" />
     <PackageReference Include="Resend" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
   </ItemGroup>
 
 </Project>

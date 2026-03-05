@@ -643,6 +643,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
+          "BusinessLogic": "1.0.0",
+          "Hangfire.Core": "1.8.23",
           "Resend": "0.2.1"
         },
         "compile": {
@@ -669,6 +671,9 @@
       "DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "BusinessLogic": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DataAccess.dll": {}
         },
