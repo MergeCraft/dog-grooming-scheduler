@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BusinessLogic.Entities
 {
-    internal class User
+    public class User
     {
     }
 }

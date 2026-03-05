@@ -1,33 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace BusinessLogic.Entities
 {
-    internal enum DogSize
+    public enum DogSize
     {
         Small,
         Medium,
         Large
     }
 
-    internal class Reserve
+    public class Reserve
     {
         public Guid Id { get; set; }
 
-        // FechaReserva
         public DateTime ReservationDate { get; set; }
 
-        // Horario (time of the reservation)
         public TimeSpan TimeSlot { get; set; }
-
-        // Peluquero
+        [Required]
         public PetGroomer Groomer { get; set; }
-
-        // Cliente
+        [Required]
         public Client Client { get; set; }
 
-        // TipoDePerro (small, medium or large)
+        // (small, medium or large)
         public DogSize PetSize { get; set; }
+
+        // Save the ID that Hangfire returns when scheduling the reminder job, so we can cancel it if needed
+        public string? ReminderJobId { get; set; }
+
+        public bool IsCanceled { get; set; } = false;
     }
 }
