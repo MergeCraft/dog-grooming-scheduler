@@ -7,8 +7,36 @@
       "RelativeMoniker": "D:0:0:{45E8AD2D-F6CC-99C0-B6AF-489676982DA4}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repositories\\contextdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{45E8AD2D-F6CC-99C0-B6AF-489676982DA4}|DataAccess\\DataAccess.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\dataaccess\\repositories\\reserverepositoryef.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45E8AD2D-F6CC-99C0-B6AF-489676982DA4}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repositories\\reserverepositoryef.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05A8790D-847A-F9DA-2815-FC8BA497201B}|AplicationLogic\\AplicationLogic.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\aplicationlogic\\dtos\\reservedto\\createreservedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{05A8790D-847A-F9DA-2815-FC8BA497201B}|AplicationLogic\\AplicationLogic.csproj|solutionrelative:aplicationlogic\\dtos\\reservedto\\createreservedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05A8790D-847A-F9DA-2815-FC8BA497201B}|AplicationLogic\\AplicationLogic.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\aplicationlogic\\dtos\\reservemapper\\createreservemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{05A8790D-847A-F9DA-2815-FC8BA497201B}|AplicationLogic\\AplicationLogic.csproj|solutionrelative:aplicationlogic\\dtos\\reservemapper\\createreservemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05A8790D-847A-F9DA-2815-FC8BA497201B}|AplicationLogic\\AplicationLogic.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\aplicationlogic\\services\\createreserve\\createreserve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{05A8790D-847A-F9DA-2815-FC8BA497201B}|AplicationLogic\\AplicationLogic.csproj|solutionrelative:aplicationlogic\\services\\createreserve\\createreserve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\reserve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\reserve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\repositoriesinterfaces\\ireserverepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\repositoriesinterfaces\\ireserverepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\petgroomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\petgroomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E7D9F3-E9ED-0AE0-4FA7-F8BD18BD2256}|DogGrommingScheduler\\WebAPI.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\doggrommingscheduler\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E7D9F3-E9ED-0AE0-4FA7-F8BD18BD2256}|DogGrommingScheduler\\WebAPI.csproj|solutionrelative:doggrommingscheduler\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +53,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\businesslogic.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\businesslogic.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|c:\\users\\santiago\\documents\\github\\dog-grooming-scheduler\\doggrommingscheduler\\businesslogic\\entities\\petgroomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01E30B25-F83B-04BE-47BF-65C6F329008E}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\entities\\petgroomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,8 +62,108 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 12,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d84ee353-0bef-5a41-a649-8f89aca5d84d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateReserve.cs",
+              "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\Services\\CreateReserve\\CreateReserve.cs",
+              "RelativeDocumentMoniker": "AplicationLogic\\Services\\CreateReserve\\CreateReserve.cs",
+              "ToolTip": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\Services\\CreateReserve\\CreateReserve.cs",
+              "RelativeToolTip": "AplicationLogic\\Services\\CreateReserve\\CreateReserve.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T22:03:47.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReserveRepositoryEF.cs",
+              "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\Repositories\\ReserveRepositoryEF.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Repositories\\ReserveRepositoryEF.cs",
+              "ToolTip": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\Repositories\\ReserveRepositoryEF.cs",
+              "RelativeToolTip": "DataAccess\\Repositories\\ReserveRepositoryEF.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T22:01:15.704Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CreateReserveMapper.cs",
+              "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\DTOs\\ReserveMapper\\CreateReserveMapper.cs",
+              "RelativeDocumentMoniker": "AplicationLogic\\DTOs\\ReserveMapper\\CreateReserveMapper.cs",
+              "ToolTip": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\DTOs\\ReserveMapper\\CreateReserveMapper.cs",
+              "RelativeToolTip": "AplicationLogic\\DTOs\\ReserveMapper\\CreateReserveMapper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T21:59:02.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreateReserveDto.cs",
+              "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\DTOs\\ReserveDto\\CreateReserveDto.cs",
+              "RelativeDocumentMoniker": "AplicationLogic\\DTOs\\ReserveDto\\CreateReserveDto.cs",
+              "ToolTip": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\DTOs\\ReserveDto\\CreateReserveDto.cs",
+              "RelativeToolTip": "AplicationLogic\\DTOs\\ReserveDto\\CreateReserveDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T21:56:34.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IReserveRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\RepositoriesInterfaces\\IReserveRepository.cs",
+              "RelativeDocumentMoniker": "BusinessLogic\\RepositoriesInterfaces\\IReserveRepository.cs",
+              "ToolTip": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\RepositoriesInterfaces\\IReserveRepository.cs",
+              "RelativeToolTip": "BusinessLogic\\RepositoriesInterfaces\\IReserveRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T21:52:48.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\Program.cs",
+              "RelativeDocumentMoniker": "DogGrommingScheduler\\Program.cs",
+              "ToolTip": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\Program.cs",
+              "RelativeToolTip": "DogGrommingScheduler\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T14:52:18.422Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -55,19 +179,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Reserve.cs",
               "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\Reserve.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Entities\\Reserve.cs",
               "ToolTip": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\Reserve.cs",
               "RelativeToolTip": "BusinessLogic\\Entities\\Reserve.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-23T21:02:52.538Z"
+              "WhenOpened": "2026-02-23T21:02:52.538Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
               "Title": "Client.cs",
               "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\Client.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Entities\\Client.cs",
@@ -79,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\User.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Entities\\User.cs",
@@ -91,7 +216,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "Schedule.cs",
               "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\Schedule.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Entities\\Schedule.cs",
@@ -103,7 +228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "BusinessLogic.csproj",
               "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
               "RelativeDocumentMoniker": "BusinessLogic\\BusinessLogic.csproj",
@@ -115,15 +240,51 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "PetGroomer.cs",
               "DocumentMoniker": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\PetGroomer.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Entities\\PetGroomer.cs",
               "ToolTip": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\Entities\\PetGroomer.cs",
               "RelativeToolTip": "BusinessLogic\\Entities\\PetGroomer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-23T21:00:55.057Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{5a4e9529-b6a0-46b5-be4f-0f0b239bc0eb}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

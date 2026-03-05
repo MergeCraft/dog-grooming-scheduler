@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
     <Folder Include="Services\Authentication\" />
-    <Folder Include="Services\" />
     <Folder Include="Services\Scheduler\" />
   </ItemGroup>
 
