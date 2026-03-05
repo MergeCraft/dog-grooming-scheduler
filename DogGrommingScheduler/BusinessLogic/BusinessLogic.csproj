@@ -11,4 +11,9 @@
     <Folder Include="RepositoriesInterfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Hangfire.Core" />
+    <PackageReference Include="Newtonsoft.Json" />
+  </ItemGroup>
+
 </Project>

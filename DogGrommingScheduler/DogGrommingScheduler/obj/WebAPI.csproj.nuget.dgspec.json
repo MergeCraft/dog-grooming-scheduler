@@ -13,6 +13,7 @@
         "packagesPath": "C:\\Users\\tator\\.nuget\\packages\\",
         "outputPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\AplicationLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
@@ -52,8 +53,19 @@
           "dependencies": {
             "Resend": {
               "target": "Package",
-              "version": "[0.2.1, )"
+              "version": "[0.2.1, )",
+              "versionCentrallyManaged": true
             }
+          },
+          "centralPackageVersions": {
+            "Hangfire.AspNetCore": "1.8.23",
+            "Hangfire.Core": "1.8.23",
+            "Hangfire.SqlServer": "1.8.23",
+            "Microsoft.AspNetCore.OpenApi": "10.0.3",
+            "Microsoft.Data.SqlClient": "6.1.4",
+            "Newtonsoft.Json": "13.0.3",
+            "Resend": "0.2.1",
+            "Swashbuckle.AspNetCore": "10.1.4"
           },
           "imports": [
             "net461",
@@ -358,6 +370,7 @@
         "packagesPath": "C:\\Users\\tator\\.nuget\\packages\\",
         "outputPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
@@ -394,6 +407,28 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.23, )",
+              "versionCentrallyManaged": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )",
+              "versionCentrallyManaged": true
+            }
+          },
+          "centralPackageVersions": {
+            "Hangfire.AspNetCore": "1.8.23",
+            "Hangfire.Core": "1.8.23",
+            "Hangfire.SqlServer": "1.8.23",
+            "Microsoft.AspNetCore.OpenApi": "10.0.3",
+            "Microsoft.Data.SqlClient": "6.1.4",
+            "Newtonsoft.Json": "13.0.3",
+            "Resend": "0.2.1",
+            "Swashbuckle.AspNetCore": "10.1.4"
+          },
           "imports": [
             "net461",
             "net462",
@@ -697,6 +732,7 @@
         "packagesPath": "C:\\Users\\tator\\.nuget\\packages\\",
         "outputPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
@@ -733,6 +769,16 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "centralPackageVersions": {
+            "Hangfire.AspNetCore": "1.8.23",
+            "Hangfire.Core": "1.8.23",
+            "Hangfire.SqlServer": "1.8.23",
+            "Microsoft.AspNetCore.OpenApi": "10.0.3",
+            "Microsoft.Data.SqlClient": "6.1.4",
+            "Newtonsoft.Json": "13.0.3",
+            "Resend": "0.2.1",
+            "Swashbuckle.AspNetCore": "10.1.4"
+          },
           "imports": [
             "net461",
             "net462",
@@ -1036,6 +1082,7 @@
         "packagesPath": "C:\\Users\\tator\\.nuget\\packages\\",
         "outputPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DogGrommingScheduler\\obj\\",
         "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
@@ -1083,14 +1130,51 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.23, )",
+              "versionCentrallyManaged": true
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.23, )",
+              "versionCentrallyManaged": true
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[10.0.3, )"
+              "version": "[10.0.3, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[6.1.4, )",
+              "versionCentrallyManaged": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )",
+              "versionCentrallyManaged": true
             },
             "Resend": {
               "target": "Package",
-              "version": "[0.2.1, )"
+              "version": "[0.2.1, )",
+              "versionCentrallyManaged": true
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.1.4, )",
+              "versionCentrallyManaged": true
             }
+          },
+          "centralPackageVersions": {
+            "Hangfire.AspNetCore": "1.8.23",
+            "Hangfire.Core": "1.8.23",
+            "Hangfire.SqlServer": "1.8.23",
+            "Microsoft.AspNetCore.OpenApi": "10.0.3",
+            "Microsoft.Data.SqlClient": "6.1.4",
+            "Newtonsoft.Json": "13.0.3",
+            "Resend": "0.2.1",
+            "Swashbuckle.AspNetCore": "10.1.4"
           },
           "imports": [
             "net461",

@@ -20,6 +20,7 @@
       "packagesPath": "C:\\Users\\tator\\.nuget\\packages\\",
       "outputPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
+      "centralPackageVersionsManagementEnabled": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
@@ -56,6 +57,16 @@
     "frameworks": {
       "net10.0": {
         "targetAlias": "net10.0",
+        "centralPackageVersions": {
+          "Hangfire.AspNetCore": "1.8.23",
+          "Hangfire.Core": "1.8.23",
+          "Hangfire.SqlServer": "1.8.23",
+          "Microsoft.AspNetCore.OpenApi": "10.0.3",
+          "Microsoft.Data.SqlClient": "6.1.4",
+          "Newtonsoft.Json": "13.0.3",
+          "Resend": "0.2.1",
+          "Swashbuckle.AspNetCore": "10.1.4"
+        },
         "imports": [
           "net461",
           "net462",
