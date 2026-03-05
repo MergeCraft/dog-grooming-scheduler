@@ -1,0 +1,13 @@
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\bin\Debug\net10.0\BusinessLogic.deps.json
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\bin\Debug\net10.0\BusinessLogic.dll
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\bin\Debug\net10.0\BusinessLogic.pdb
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\obj\Debug\net10.0\BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\obj\Debug\net10.0\BusinessLogic.AssemblyInfoInputs.cache
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\obj\Debug\net10.0\BusinessLogic.AssemblyInfo.cs
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\obj\Debug\net10.0\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\obj\Debug\net10.0\BusinessLogic.sourcelink.json
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\obj\Debug\net10.0\BusinessLogic.dll
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\obj\Debug\net10.0\refint\BusinessLogic.dll
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\obj\Debug\net10.0\BusinessLogic.pdb
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\obj\Debug\net10.0\ref\BusinessLogic.dll
+C:\development\dog-grooming-scheduler\DogGrommingScheduler\BusinessLogic\obj\Debug\net10.0\BusinessLogic.csproj.AssemblyReference.cache
