@@ -7,6 +7,12 @@ using Hangfire.SqlServer;
 using AplicationLogic.Services.Scheduler;
 using BusinessLogic.RepositoriesInterfaces;
 using DataAccess.Repositories;
+using BusinessLogic.Interfaces;
+using AplicationLogic.ServicesInterfaces;
+using AplicationLogic.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +21,8 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ContextDB>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString, sqlOptions =>
+        sqlOptions.MigrationsAssembly("DataAccess")));
 
 //  Resend (Email)
 builder.Services.Configure<ResendClientOptions>(options =>
