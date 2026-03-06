@@ -3,7 +3,9 @@
 namespace BusinessLogic.Entities;
 public class Schedule
 {
-    public Guid Id { get; set; }
+    public class Schedule
+    {
+        public Guid Id { get; set; }
 
     public Guid PetGroomerId { get; set; }
     public PetGroomer Groomer { get; set; }

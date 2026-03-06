@@ -52,11 +52,35 @@ builder.Services.AddHangfireServer();
 
 // --- 4. WEB SERVICES (API and SWAGGER) ---
 
+// ── REPOSITORIES ───────────────────────────────────────
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+// ── USE CASES ───────────────────────────────────────
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+// ── JWT ────────────────────────────────────────────────
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+	.AddJwtBearer(options =>
+	{
+		options.TokenValidationParameters = new TokenValidationParameters
+		{
+			ValidateIssuer = true,
+			ValidateAudience = true,
+			ValidateLifetime = true,
+			ValidateIssuerSigningKey = true,
+			ValidIssuer = builder.Configuration["Jwt:Issuer"],
+			ValidAudience = builder.Configuration["Jwt:Audience"],
+			IssuerSigningKey = new SymmetricSecurityKey(
+				Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+		};
+	});
+
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer(); 
 builder.Services.AddSwaggerGen();
 builder.Services.AddOpenApi();
-
+builder.Services.AddOpenApi();
 var app = builder.Build();
 
 // --- 5. HTTP MIDDLEWARE PIPELINE ---
@@ -69,6 +93,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
