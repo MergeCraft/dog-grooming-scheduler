@@ -1,10 +1,12 @@
-﻿using System;
+﻿using BusinessLogic.Entities;
+using BusinessLogic.RepositoryInterfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BusinessLogic.RepositoriesInterfaces
 {
-    internal interface IReserveRepository
+    public interface IReserveRepository:IRepository<Reserve>
     {
     }
 }

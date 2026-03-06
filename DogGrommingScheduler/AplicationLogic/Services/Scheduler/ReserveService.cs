@@ -1,71 +1,71 @@
-﻿using AplicationLogic.Interfaces;
+﻿using AplicationLogic.DTOs.Reserve;
+using AplicationLogic.DTOs.ReserveMapper;
+using AplicationLogic.Interfaces;
+using BusinessLogic.RepositoriesInterfaces;
+using BusinessLogic.Results;
 using Hangfire;
-using Hangfire.Processing;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using BusinessLogic.Entities;
 
 namespace AplicationLogic.Services.Scheduler
 {
-    public class ReserveService
+    public class ReserveService : IReserveService
     {
+        private readonly IReserveRepository _reserveRepository;
         private readonly IBackgroundJobClient _backgroundJobs;
         private readonly IEmailService _emailService;
 
-        public ReserveService(IBackgroundJobClient backgroundJobs, IEmailService emailService)
+        public ReserveService(IReserveRepository repo, IBackgroundJobClient jobs, IEmailService email)
         {
-            _backgroundJobs = backgroundJobs;
-            _emailService = emailService;
+            _reserveRepository = repo;
+            _backgroundJobs = jobs;
+            _emailService = email;
         }
 
-        public async Task ProcessNewReserveAsync(Reserve reserve, string clientEmail, string clientName, string groomerName)
+        public async Task<Result> ProcessNewReserveAsync(CreateReserveDto dto)
         {
-            // 1. Aquí iría tu lógica para guardar la reserva en la Base de Datos usando tu Repositorio
-            // await _reserveRepository.AddAsync(reserve);
+            var reserve = CreateReserveMapper.FromDto(dto);
 
-            
-            // Enqueue for second plane right now, it will be processed as soon as possible
+            var saveResult = await _reserveRepository.AddAsync(reserve);
+            if (saveResult.IsFailure) return saveResult;
+
             _backgroundJobs.Enqueue(() =>
-                _emailService.SendAppointmentConfirmationAsync(clientEmail, clientName, reserve.ReservationDate));
+                _emailService.SendAppointmentConfirmationAsync(
+                    dto.ClientEmail,
+                    dto.ClientName,
+                    reserve.ReservationDate));
 
-            //Schedule send (2 hours before)
-            DateTime reminderTime = reserve.ReservationDate.AddHours(-2);
+            DateTime reminderTime = reserve.ReservationDate.Date + reserve.TimeSlot - TimeSpan.FromHours(2);
 
-            // Schedule para ejecutarlo en el futuro. Esto nos devuelve un ID único.
-            string jobId = _backgroundJobs.Schedule(() =>
-                _emailService.SendReminderAppointmentAsync(clientEmail, clientName, reserve.ReservationDate, groomerName),
-                reminderTime);
+            if (reminderTime > DateTime.Now)
+            {
+                string jobId = _backgroundJobs.Schedule(() =>
+                    _emailService.SendReminderAppointmentAsync(
+                        dto.ClientEmail,
+                        dto.ClientName,
+                        reserve.ReservationDate,
+                        dto.GroomerName),
+                    reminderTime);
 
-            //if we wanto to cancel the job in the future, we need to store this jobId in the database associated with the reserve
-            reserve.ReminderJobId = jobId;
+                reserve.ReminderJobId = jobId;
+                await _reserveRepository.UpdateAsync(reserve);
+            }
 
-            // Aquí actualizarías la reserva en la base de datos con el nuevo JobId
-            // await _reserveRepository.UpdateAsync(reserve);
+            return Result.Success();
         }
 
-        public async Task CancelReserveAsync(int reserveId)
+        public async Task<Result> CancelReserveAsync(Guid reserveId)
         {
-            
-            // Reserve reserve = await _reserveRepository.GetByIdAsync(reserveId);
-            /*      
-     
+            var result = await _reserveRepository.GetByIdAsync(reserveId);
+            if (result.IsFailure) return Result.Failure(result.Errors);
 
-            if (reserve == null)
-            {
-                throw new Exception("La reserva no existe.");
-            }
+            var reserve = result.Value;
 
             if (!string.IsNullOrEmpty(reserve.ReminderJobId))
             {
-                bool isDeleted = _backgroundJobs.Delete(reserve.ReminderJobId);
+                _backgroundJobs.Delete(reserve.ReminderJobId);
             }
-            */
 
-            // Actualizar el estado de la reserva en la base de datos (Ej: Status = "Cancelada")
-             //reserve.IsCanceled = true;
-             //await _reserveRepository.UpdateAsync(reserve);
+            reserve.IsCanceled = true;
+            return await _reserveRepository.UpdateAsync(reserve);
         }
-
     }
 }
