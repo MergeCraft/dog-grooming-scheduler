@@ -7,7 +7,7 @@ namespace AplicationLogic.DTOs.ReserveMapper
     public static class CreateReserveMapper
     {
         /// <summary>
-        /// Transforma un DTO de creación en una entidad de negocio Reserve.
+        /// Transforms a creation DTO into a business Reserve entity.
         /// </summary>
         public static BusinessLogic.Entities.Reserve FromDto(CreateReserveDto dto)
         {
@@ -15,18 +15,18 @@ namespace AplicationLogic.DTOs.ReserveMapper
 
             return new BusinessLogic.Entities.Reserve
             {
-                Id = Guid.NewGuid(), // Generamos el nuevo ID único para la reserva
+                Id = Guid.NewGuid(), // Generate a new unique ID for the reserve
                 ReservationDate = dto.ReservationDate,
                 TimeSlot = dto.TimeSlot,
                 ScheduleId = dto.ScheduleId,
                 ClientId = dto.ClientId,
                 PetSize = dto.PetSize,
-                IsCanceled = false // Por defecto una reserva nueva no está cancelada
+                IsCanceled = false // By default a new reserve is not canceled
             };
         }
 
         /// <summary>
-        /// (Opcional) Útil si necesitas devolver la reserva creada al frontend
+        /// (Optional) Useful if you need to return the created reserve to the frontend
         /// </summary>
         public static CreateReserveDto ToDto(BusinessLogic.Entities.Reserve entity)
         {

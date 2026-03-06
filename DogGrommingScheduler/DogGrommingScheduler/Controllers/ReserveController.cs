@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// Crea una nueva reserva y programa los recordatorios.
+        /// Create Reserve
         /// </summary>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateReserveDto dto)
@@ -32,11 +32,11 @@ namespace WebAPI.Controllers
                 return HandleErrorResult(result);
             }
 
-            return Ok(new { Message = "Reserva creada exitosamente y notificaciones programadas." });
+            return Ok(new { Message = "Reserve Created successfully." });
         }
 
         /// <summary>
-        /// Cancela una reserva existente y elimina los trabajos de Hangfire.
+        /// Cancel Reserve
         /// </summary>
         [HttpPut("cancel/{id}")]
         public async Task<IActionResult> Cancel(Guid id)
@@ -48,7 +48,7 @@ namespace WebAPI.Controllers
                 return HandleErrorResult(result);
             }
 
-            return Ok(new { Message = "Reserva cancelada y recordatorios eliminados." });
+            return Ok(new { Message = "Reserve Cancel successfully." });
         }
 
         private IActionResult HandleErrorResult(Result result)

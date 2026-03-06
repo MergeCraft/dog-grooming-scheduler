@@ -10,16 +10,14 @@ using DataAccess.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- 1. CONFIGURACIÓN DE DATOS E INFRAESTRUCTURA ---
+// --- 1. INFRASTRUCTURE ---
 
-// Obtenemos la conexión primero para que esté disponible abajo
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Registro del DbContext (Entity Framework)
 builder.Services.AddDbContext<ContextDB>(options =>
     options.UseSqlServer(connectionString));
 
-// Configuración de Resend (Email)
+//  Resend (Email)
 builder.Services.Configure<ResendClientOptions>(options =>
 {
     options.ApiToken = builder.Configuration["Resend:ApiKey"]!;
@@ -28,17 +26,15 @@ builder.Services.Configure<ResendClientOptions>(options =>
 builder.Services.AddOptions();
 builder.Services.AddHttpClient<ResendClient>();
 
-// --- 2. INYECCIÓN DE DEPENDENCIAS ---
+// --- 2. DEPENDENCY INJECTION (DI) ---
 
-// Email
 builder.Services.AddTransient<IResend, ResendClient>();
 builder.Services.AddScoped<IEmailService, ResendEmailService>();
 
-// Repositorios y Servicios de Reserva
 builder.Services.AddScoped<IReserveRepository, ReserveRepositoryEF>();
 builder.Services.AddScoped<IReserveService, ReserveService>();
 
-// --- 3. CONFIGURACIÓN DE HANGFIRE ---
+// --- 3. HANGFIRE CONFIGURATION ---
 
 builder.Services.AddHangfire(configuration => configuration
     .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
@@ -52,19 +48,18 @@ builder.Services.AddHangfire(configuration => configuration
         UseRecommendedIsolationLevel = true
     }));
 
-// Servidor de Hangfire para procesar tareas
 builder.Services.AddHangfireServer();
 
-// --- 4. SERVICIOS WEB (API Y SWAGGER) ---
+// --- 4. WEB SERVICES (API and SWAGGER) ---
 
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer(); // Necesario para Swagger en .NET 8/9
+builder.Services.AddEndpointsApiExplorer(); 
 builder.Services.AddSwaggerGen();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// --- 5. PIPELINE DE MIDDLEWARE (HTTP) ---
+// --- 5. HTTP MIDDLEWARE PIPELINE ---
 
 if (app.Environment.IsDevelopment())
 {
@@ -77,7 +72,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-// Dashboard de Hangfire (para ver los emails programados)
 app.UseHangfireDashboard("/hangfire");
 
 app.MapControllers();

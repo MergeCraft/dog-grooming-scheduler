@@ -17,7 +17,7 @@ namespace DataAccess.Repositories
         {
             base.OnModelCreating(modelBuilder);
 
-            // 1. Configuración de Client
+            // 1. Client configuration
             modelBuilder.Entity<Client>(entity =>
             {
                 entity.HasKey(c => c.Id);
@@ -25,41 +25,41 @@ namespace DataAccess.Repositories
                 entity.HasIndex(c => c.Email).IsUnique();
             });
 
-            // 2. Configuración de PetGroomer
+            // 2. PetGroomer configuration
             modelBuilder.Entity<PetGroomer>(entity =>
             {
-                // Si agregaste el Id a la clase, usa g => g.Id. 
-                // Si no, mantenemos la Shadow Property por ahora.
+                // If you added the Id to the class, use g => g.Id.
+                // If not, keep the shadow property for now.
                 entity.HasKey(g => g.Id);
                 entity.Property(g => g.Name).IsRequired();
 
-                // Relación: Un Peluquero tiene muchos Schedules
+                // Relationship: a groomer has many schedules
                 entity.HasMany(g => g.Schedules)
                       .WithOne(s => s.Groomer)
                       .HasForeignKey(s => s.PetGroomerId)
                       .OnDelete(DeleteBehavior.Cascade);
             });
 
-            // 3. Configuración de Schedule (La jornada del peluquero)
+            // 3. Schedule configuration (the groomer's working day)
             modelBuilder.Entity<Schedule>(entity =>
             {
                 entity.HasKey(s => s.Id);
 
-                // Relación: Un Schedule tiene muchas Reservas
+                // Relationship: a schedule has many reserves
                 entity.HasMany(s => s.Reservations)
                       .WithOne(r => r.Schedule)
                       .HasForeignKey(r => r.ScheduleId)
-                      .OnDelete(DeleteBehavior.Restrict); // Evitamos borrar cascada circular
+                      .OnDelete(DeleteBehavior.Restrict); // Avoid circular cascade deletes
             });
 
-            // 4. Configuración de Reserve
+            // 4. Reserve configuration
             modelBuilder.Entity<Reserve>(entity =>
             {
                 entity.HasKey(r => r.Id);
 
                 entity.HasOne(r => r.Client)
                       .WithMany(c => c.Reservations)
-                      .HasForeignKey(r => r.ClientId) // Sin comillas, usando la propiedad de la clase
+                      .HasForeignKey(r => r.ClientId) // Without quotes, using the class property
                       .OnDelete(DeleteBehavior.Cascade);
 
                 entity.Property(r => r.PetSize)

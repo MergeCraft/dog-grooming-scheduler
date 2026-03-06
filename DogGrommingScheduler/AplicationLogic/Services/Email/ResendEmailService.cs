@@ -9,8 +9,8 @@ namespace AplicationLogic.Services.Email
     public class ResendEmailService : IEmailService
     {
         private readonly IResend _resend;
-        // Nota: Resend requiere que envíes desde un dominio verificado. 
-        // Mientras se prueba podemos usar su correo de testing (onboarding@resend.dev)
+        // Note: Resend requires that you send from a verified domain.
+        // For testing we can use their testing email (onboarding@resend.dev)
         private readonly string _emailOrigen = "onboarding@resend.dev";
 
         public ResendEmailService(IResend resend)

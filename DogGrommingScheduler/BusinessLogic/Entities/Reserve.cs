@@ -16,7 +16,7 @@ namespace BusinessLogic.Entities
     {
         public Guid Id { get; set; }
         public DateTime ReservationDate { get; set; }
-        public TimeSpan TimeSlot { get; set; } // La hora exacta del inicio (ej: 10:30 AM)
+        public TimeSpan TimeSlot { get; set; } // The exact start time (e.g., 10:30 AM)
 
         public Guid ScheduleId { get; set; }
         public Schedule Schedule { get; set; }
