@@ -8,6 +8,6 @@ namespace AplicationLogic.Interfaces
     public interface IReserveService
     {
         Task ProcessNewReserveAsync(Reserve reserve, string clientEmail, string clientName, string groomerName);
-         Task CancelReserveAsync(Reserve reserve, string clientEmail, string clientName, string groomerName);
+        Task CancelReserveAsync(int reserveId);
     }
 }

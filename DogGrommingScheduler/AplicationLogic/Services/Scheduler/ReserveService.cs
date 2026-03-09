@@ -8,7 +8,7 @@ using BusinessLogic.Entities;
 
 namespace AplicationLogic.Services.Scheduler
 {
-    public class ReserveService
+    public class ReserveService: IReserveService
     {
         private readonly IBackgroundJobClient _backgroundJobs;
         private readonly IEmailService _emailService;

@@ -9,9 +9,7 @@ namespace AplicationLogic.Services.Email
     public class ResendEmailService : IEmailService
     {
         private readonly IResend _resend;
-        // Nota: Resend requiere que envíes desde un dominio verificado. 
-        // Mientras se prueba podemos usar su correo de testing (onboarding@resend.dev)
-        private readonly string _emailOrigen = "onboarding@resend.dev";
+        private readonly string _emailOrigen = "schedule@updates.riosrenato.com";
 
         public ResendEmailService(IResend resend)
         {
@@ -19,8 +17,8 @@ namespace AplicationLogic.Services.Email
         }
         public async Task SendAppointmentConfirmationAsync(string toEmail, string clientName, DateTime dateAppointment)
         {
-            var subject = "Confirmación de cita";
-            var htmlContent = $"<p>Hola {clientName},</p><p>Tu cita ha sido confirmada para el {dateAppointment:MMMM dd, yyyy} a las {dateAppointment:hh:mm tt}.</p><p>¡Gracias por elegirnos!</p>";
+            var subject = "Date Confirmin";
+            var htmlContent = $"<p>Hi {clientName},</p><p>Your date was confirm to {dateAppointment:MMMM dd, yyyy} at {dateAppointment:hh:mm tt}.</p><p>¡Thank you to choosing us!</p>";
             var message = new EmailMessage
             {
                 From = _emailOrigen,
@@ -33,8 +31,8 @@ namespace AplicationLogic.Services.Email
 
         public async Task SendReminderAppointmentAsync(string toEmail, string clientName, DateTime dateAppointment, string hairstylistName)
         {
-            var subject = "Recordatorio de cita";
-            var htmlContent = $"<p>Hola {clientName},</p><p>Este es un recordatorio de tu cita con {hairstylistName} el {dateAppointment:MMMM dd, yyyy} a las {dateAppointment:hh:mm tt}.</p><p>¡Nos vemos pronto!</p>";
+            var subject = "Reserve reminder";
+            var htmlContent = $"<p>Hi {clientName},</p><p>This is a reminder. You have a date with {hairstylistName} on {dateAppointment:MMMM dd, yyyy} at {dateAppointment:hh:mm tt}.</p><p>¡See you!</p>";
             var message = new EmailMessage
             {
                 From = _emailOrigen,

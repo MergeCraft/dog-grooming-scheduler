@@ -35,7 +35,7 @@ builder.Services.AddHangfire(configuration => configuration
         UseRecommendedIsolationLevel = true
     }));
 
-// 2. Agregamos el servidor que procesará las tareas en segundo plano
+// server that will process the jobs in the background
 builder.Services.AddHangfireServer();
 
 // Add services to the container.
