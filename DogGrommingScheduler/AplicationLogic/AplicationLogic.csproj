@@ -11,8 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Core" />
     <PackageReference Include="Hangfire.Core" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" />
     <PackageReference Include="Resend" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
+  
   </ItemGroup>
 
   <ItemGroup>

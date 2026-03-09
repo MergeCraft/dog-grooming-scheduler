@@ -5,12 +5,9 @@ using System.Text;
 
 namespace BusinessLogic.Entities
 {
-    public class Client
+    public class Client : User
     {
-        public Guid Id { get; set; }
-        [Required]
-        public string Name { get; set; }
-
+        // Telefono
         public string Phone { get; set; }
         [Required]
         public string Email { get; set; }

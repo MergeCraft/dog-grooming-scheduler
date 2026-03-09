@@ -1,13 +1,15 @@
-﻿using System;
+﻿using AplicationLogic.DTOs.Reserve;
+using BusinessLogic.Entities;
+using BusinessLogic.Results;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using BusinessLogic.Entities;
 
 namespace AplicationLogic.Interfaces
 {
     public interface IReserveService
     {
-        Task ProcessNewReserveAsync(Reserve reserve, string clientEmail, string clientName, string groomerName);
-        Task CancelReserveAsync(int reserveId);
+        Task<Result> ProcessNewReserveAsync(CreateReserveDto dto);
+        Task<Result> CancelReserveAsync(Guid reserveId);
     }
 }

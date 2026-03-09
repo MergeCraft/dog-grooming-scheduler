@@ -15,21 +15,17 @@ namespace BusinessLogic.Entities
     public class Reserve
     {
         public Guid Id { get; set; }
-
         public DateTime ReservationDate { get; set; }
+        public TimeSpan TimeSlot { get; set; } // The exact start time (e.g., 10:30 AM)
 
-        public TimeSpan TimeSlot { get; set; }
-        [Required]
-        public PetGroomer Groomer { get; set; }
-        [Required]
+        public Guid ScheduleId { get; set; }
+        public Schedule Schedule { get; set; }
+
+        public Guid ClientId { get; set; }
         public Client Client { get; set; }
 
-        // (small, medium or large)
         public DogSize PetSize { get; set; }
-
-        // Save the ID that Hangfire returns when scheduling the reminder job, so we can cancel it if needed
-        public string? ReminderJobId { get; set; }
-
         public bool IsCanceled { get; set; } = false;
+        public string ReminderJobId { get; set; }
     }
 }
