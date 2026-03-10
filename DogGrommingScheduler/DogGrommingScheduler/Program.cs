@@ -5,7 +5,7 @@ using AplicationLogic.Services.Email;
 using Hangfire;
 using Hangfire.SqlServer;
 using AplicationLogic.Services.Scheduler;
-using BusinessLogic.RepositoriesInterfaces;
+using BusinessLogic.RepositoryInterfaces;
 using DataAccess.Repositories;
 using BusinessLogic.Interfaces;
 using AplicationLogic.ServicesInterfaces;
@@ -15,6 +15,35 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// CORS: configure allowed origins from configuration. In Production provide
+// the values under configuration key "BlazorClient:AllowedOrigins" as an array.
+var blazorOrigins = builder.Configuration.GetSection("BlazorClient:AllowedOrigins").Get<string[]>();
+var enableCorsPolicy = (blazorOrigins != null && blazorOrigins.Length > 0) || builder.Environment.IsDevelopment();
+
+if (enableCorsPolicy)
+{
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(name: "BlazorClientPolicy", policy =>
+        {
+            if (blazorOrigins != null && blazorOrigins.Length > 0)
+            {
+                policy.WithOrigins(blazorOrigins)
+                      .AllowAnyHeader()
+                      .AllowAnyMethod()
+                      .AllowCredentials();
+            }
+            else
+            {
+                // Development fallback: allow any origin for ease of local development.
+                policy.AllowAnyOrigin()
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+            }
+        });
+    });
+}
 
 // --- 1. INFRASTRUCTURE ---
 
@@ -37,8 +66,6 @@ builder.Services.AddHttpClient<ResendClient>();
 
 builder.Services.AddTransient<IResend, ResendClient>();
 builder.Services.AddScoped<IEmailService, ResendEmailService>();
-
-builder.Services.AddScoped<IReserveRepository, ReserveRepositoryEF>();
 builder.Services.AddScoped<IReserveService, ReserveService>();
 
 // --- 3. HANGFIRE CONFIGURATION ---
@@ -55,13 +82,13 @@ builder.Services.AddHangfire(configuration => configuration
         UseRecommendedIsolationLevel = true
     }));
 
-// 2. Agregamos el servidor que procesará las tareas en segundo plano
 builder.Services.AddHangfireServer();
 
 // --- 4. WEB SERVICES (API and SWAGGER) ---
 
 // ── REPOSITORIES ───────────────────────────────────────
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IReserveRepository, ReserveRepositoryEF>();
 
 // ── USE CASES ───────────────────────────────────────
 builder.Services.AddScoped<IAuthService, AuthService>();
@@ -101,6 +128,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Enable CORS for the Blazor client only when configured
+var blazorOriginsConfigured = builder.Configuration.GetSection("BlazorClient:AllowedOrigins").Get<string[]>() is { Length: > 0 };
+if (blazorOriginsConfigured || app.Environment.IsDevelopment())
+{
+    app.UseCors("BlazorClientPolicy");
+}
 
 app.UseAuthentication();
 

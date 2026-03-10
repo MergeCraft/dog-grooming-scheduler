@@ -1,7 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using AplicationLogic.DTOs;
+using Shared.DTOs;
 using AplicationLogic.Mappers;
 using AplicationLogic.ServicesInterfaces;
 using BusinessLogic.Entities;
@@ -51,8 +51,7 @@ namespace AplicationLogic.Services
 			string token = GenerateJwtToken(user);
 			var expiresAt = DateTime.UtcNow.AddHours(8);
 
-			// El mapper convierte la entidad a DTO antes de salir del servicio
-			// A partir de acá, User nunca vuelve a aparecer hacia arriba
+
 			return AuthMapper.ToResponse(user, token, expiresAt);
 		}
 

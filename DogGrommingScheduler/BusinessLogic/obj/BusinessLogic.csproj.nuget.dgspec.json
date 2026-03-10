@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj": {}
+    "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj": {
+    "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
+        "projectUniqueName": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
         "projectName": "BusinessLogic",
-        "projectPath": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
-        "packagesPath": "C:\\Users\\Santiago\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Santiago\\Documents\\GitHub\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\obj\\",
+        "projectPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\tator\\.nuget\\packages\\",
+        "outputPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "centralPackageVersionsManagementEnabled": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Santiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tator\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,7 +27,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -74,6 +73,8 @@
             "Hangfire.Core": "1.8.23",
             "Hangfire.SqlServer": "1.8.23",
             "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.3",
+            "Microsoft.AspNetCore.Components.WebAssembly": "10.0.3",
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": "10.0.3",
             "Microsoft.AspNetCore.OpenApi": "10.0.3",
             "Microsoft.Data.SqlClient": "6.1.4",
             "Microsoft.EntityFrameworkCore": "10.0.3",

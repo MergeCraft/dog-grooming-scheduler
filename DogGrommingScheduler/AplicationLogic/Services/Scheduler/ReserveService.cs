@@ -1,9 +1,11 @@
-﻿using AplicationLogic.DTOs.Reserve;
-using AplicationLogic.DTOs.ReserveMapper;
+﻿using Shared.DTOs;
+using Shared.DTOs.ReserveMapper;
 using AplicationLogic.Interfaces;
-using BusinessLogic.RepositoriesInterfaces;
 using BusinessLogic.Results;
 using Hangfire;
+using System;
+using System.Threading.Tasks;
+using BusinessLogic.RepositoryInterfaces;
 
 namespace AplicationLogic.Services.Scheduler
 {
@@ -22,18 +24,34 @@ namespace AplicationLogic.Services.Scheduler
 
         public async Task<Result> ProcessNewReserveAsync(CreateReserveDto dto)
         {
-            var reserve = CreateReserveMapper.FromDto(dto);
+            if (dto == null) return Result.Failure(new[] { new BusinessLogic.Results.Error("Error.InvalidInput", "DTO is null") });
 
-            var saveResult = await _reserveRepository.AddAsync(reserve);
+            // Map shared DTO model to domain Reserve entity
+            var dtoModel = CreateReserveMapper.FromDto(dto);
+
+            var domainReserve = new BusinessLogic.Entities.Reserve
+            {
+                Id = dtoModel.Id == Guid.Empty ? Guid.NewGuid() : dtoModel.Id,
+                ReservationDate = dtoModel.ReservationDate.Date,
+                TimeSlot = dtoModel.TimeSlot,
+                ScheduleId = dtoModel.ScheduleId,
+                ClientId = dtoModel.ClientId,
+                PetSize = (BusinessLogic.Entities.DogSize)dtoModel.PetSize,
+                IsCanceled = dtoModel.IsCanceled
+            };
+
+            var saveResult = await _reserveRepository.AddAsync(domainReserve);
             if (saveResult.IsFailure) return saveResult;
+
+            var appointmentDateTime = domainReserve.ReservationDate.Date + domainReserve.TimeSlot;
 
             _backgroundJobs.Enqueue(() =>
                 _emailService.SendAppointmentConfirmationAsync(
                     dto.ClientEmail,
                     dto.ClientName,
-                    reserve.ReservationDate));
+                    appointmentDateTime));
 
-            DateTime reminderTime = reserve.ReservationDate.Date + reserve.TimeSlot - TimeSpan.FromHours(2);
+            DateTime reminderTime = appointmentDateTime.AddHours(-2);
 
             if (reminderTime > DateTime.Now)
             {
@@ -41,12 +59,12 @@ namespace AplicationLogic.Services.Scheduler
                     _emailService.SendReminderAppointmentAsync(
                         dto.ClientEmail,
                         dto.ClientName,
-                        reserve.ReservationDate,
+                        appointmentDateTime,
                         dto.GroomerName),
                     reminderTime);
 
-                reserve.ReminderJobId = jobId;
-                await _reserveRepository.UpdateAsync(reserve);
+                domainReserve.ReminderJobId = jobId;
+                await _reserveRepository.UpdateAsync(domainReserve);
             }
 
             return Result.Success();

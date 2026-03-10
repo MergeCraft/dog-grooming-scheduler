@@ -1,5 +1,5 @@
 ﻿using BusinessLogic.Entities;
-using BusinessLogic.RepositoriesInterfaces;
+using BusinessLogic.RepositoryInterfaces;
 using BusinessLogic.Results;
 using Microsoft.EntityFrameworkCore;
 using System;

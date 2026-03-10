@@ -1,4 +1,4 @@
-﻿using AplicationLogic.DTOs.Reserve;
+﻿using Shared.DTOs;
 using BusinessLogic.Entities;
 using BusinessLogic.Results;
 using System;

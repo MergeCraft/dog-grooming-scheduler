@@ -1,4 +1,4 @@
-﻿using AplicationLogic.DTOs;
+﻿using Shared.DTOs;
 using AplicationLogic.ServicesInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +32,6 @@ public class AuthController : ControllerBase
 		if (response == null)
 			return Unauthorized(new { message = "Credenciales inválidas" });
 
-		return Ok(response); // AuthResponse ya está listo, no hay nada que mapear acá
+		return Ok(response);
 	}
 }

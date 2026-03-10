@@ -1,19 +1,18 @@
-﻿using AplicationLogic.DTOs.Reserve;
-using BusinessLogic.Entities;
-using System;
+﻿using System;
+using Shared.DTOs;
 
-namespace AplicationLogic.DTOs.ReserveMapper
+namespace Shared.DTOs.ReserveMapper
 {
     public static class CreateReserveMapper
     {
         /// <summary>
-        /// Transforms a creation DTO into a business Reserve entity.
+        /// Transforms a creation DTO into a shared Reserve model.
         /// </summary>
-        public static BusinessLogic.Entities.Reserve FromDto(CreateReserveDto dto)
+        public static ReserveDtoModel FromDto(CreateReserveDto dto)
         {
             if (dto == null) return null;
 
-            return new BusinessLogic.Entities.Reserve
+            return new ReserveDtoModel
             {
                 Id = Guid.NewGuid(), // Generate a new unique ID for the reserve
                 ReservationDate = dto.ReservationDate,
@@ -28,7 +27,7 @@ namespace AplicationLogic.DTOs.ReserveMapper
         /// <summary>
         /// (Optional) Useful if you need to return the created reserve to the frontend
         /// </summary>
-        public static CreateReserveDto ToDto(BusinessLogic.Entities.Reserve entity)
+        public static CreateReserveDto ToDto(ReserveDtoModel entity)
         {
             if (entity == null) return null;
 
@@ -36,7 +35,7 @@ namespace AplicationLogic.DTOs.ReserveMapper
             {
                 ReservationDate = entity.ReservationDate,
                 TimeSlot = entity.TimeSlot,
-                PetGroomerId = entity.Schedule?.PetGroomerId ?? Guid.Empty,
+                PetGroomerId = entity.ScheduleId == Guid.Empty ? Guid.Empty : entity.ScheduleId,
                 ClientId = entity.ClientId,
                 PetSize = entity.PetSize,
                 ScheduleId = entity.ScheduleId

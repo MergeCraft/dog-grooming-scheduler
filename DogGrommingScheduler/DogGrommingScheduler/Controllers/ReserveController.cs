@@ -1,4 +1,4 @@
-﻿using AplicationLogic.DTOs.Reserve;
+﻿using Shared.DTOs;
 using AplicationLogic.Interfaces;
 using BusinessLogic.Results;
 using Microsoft.AspNetCore.Mvc;

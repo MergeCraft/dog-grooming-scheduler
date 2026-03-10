@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BusinessLogic.Entities;
-using AplicationLogic.DTOs;
+using Shared.DTOs;
 
 namespace AplicationLogic.Mappers
 {

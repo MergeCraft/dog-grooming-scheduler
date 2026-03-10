@@ -1,4 +1,4 @@
-﻿using AplicationLogic.DTOs;
+﻿using Shared.DTOs;
 
 namespace AplicationLogic.ServicesInterfaces
 {

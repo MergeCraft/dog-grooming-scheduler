@@ -1,8 +1,8 @@
-﻿using BusinessLogic.Entities;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using BusinessLogic.Entities;
 
-namespace AplicationLogic.DTOs.Reserve
+namespace Shared.DTOs
 {
     public class CreateReserveDto
     {
@@ -20,9 +20,6 @@ namespace AplicationLogic.DTOs.Reserve
 
         [Required(ErrorMessage = "Pet size must be specified.")]
         public DogSize PetSize { get; set; }
-
-        // Optional: The schedule ID can be looked up automatically in the service
-        // using the date and GroomerId, but including it here simplifies things.
         public Guid ScheduleId { get; set; }
         public string ClientEmail { get; set; }
         public string ClientName { get; set; }
