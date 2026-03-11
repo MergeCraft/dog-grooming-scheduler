@@ -347,3 +347,22 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/DogGrommingScheduler/BusinessLogic/obj/Debug/net10.0/BusinessLogic.AssemblyInfo.cs
+/DogGrommingScheduler/BusinessLogic/obj/Debug/net10.0/BusinessLogic.AssemblyInfoInputs.cache
+/DogGrommingScheduler/BusinessLogic/obj/Debug/net10.0/BusinessLogic.assets.cache
+/DogGrommingScheduler/BusinessLogic/obj/BusinessLogic.csproj.nuget.dgspec.json
+/DogGrommingScheduler/BusinessLogic/obj/project.assets.json
+/DogGrommingScheduler/BusinessLogic/obj/project.nuget.cache
+/DogGrommingScheduler/DataAccess/obj/Debug/net10.0/DataAccess.AssemblyInfo.cs
+/DogGrommingScheduler/DataAccess/obj/Debug/net10.0/DataAccess.AssemblyInfoInputs.cache
+/DogGrommingScheduler/DataAccess/obj/Debug/net10.0/DataAccess.assets.cache
+/DogGrommingScheduler/DataAccess/obj/DataAccess.csproj.nuget.dgspec.json
+/DogGrommingScheduler/DataAccess/obj/project.assets.json
+/DogGrommingScheduler/DataAccess/obj/project.nuget.cache
+/DogGrommingScheduler/DogGrommingScheduler/obj/WebAPI.csproj.nuget.dgspec.json
+/DogGrommingScheduler/DogGrommingScheduler/obj/project.nuget.cache
+/DogGrommingScheduler/DogGrommingScheduler/obj/project.assets.json
+/DogGrommingScheduler/DogGrommingScheduler/obj/Debug/net10.0/WebAPI.csproj.AssemblyReference.cache
+/DogGrommingScheduler/DogGrommingScheduler/obj/Debug/net10.0/WebAPI.assets.cache
+/DogGrommingScheduler/DogGrommingScheduler/obj/Debug/net10.0/WebAPI.AssemblyInfoInputs.cache
+/DogGrommingScheduler/DogGrommingScheduler/obj/Debug/net10.0/WebAPI.AssemblyInfo.cs
