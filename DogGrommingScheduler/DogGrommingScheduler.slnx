@@ -1,6 +1,8 @@
 <Solution>
   <Project Path="AplicationLogic/AplicationLogic.csproj" />
+  <Project Path="BlazorClient/BlazorClient.csproj" Id="3e5204ed-645c-4dc4-80bb-3f32bc1a8ff5" />
   <Project Path="BusinessLogic/BusinessLogic.csproj" />
   <Project Path="DataAccess/DataAccess.csproj" />
   <Project Path="DogGrommingScheduler/WebAPI.csproj" />
+  <Project Path="Shared/Shared.csproj" Id="d35b594d-09d6-4a0a-ab74-24089cc7d56b" />
 </Solution>

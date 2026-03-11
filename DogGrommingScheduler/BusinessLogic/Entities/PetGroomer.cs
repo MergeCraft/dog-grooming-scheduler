@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace BusinessLogic.Entities
+namespace BusinessLogic.Entities;
+
+public class PetGroomer : User
 {
-    internal class PetGroomer
-    {
-        // Nombre
-        public string Name { get; set; }
-
-        // Apellido
-        public string LastName { get; set; }
-
-        // Agenda (contains reservations)
-        public Schedule Schedule { get; set; } = new Schedule();
-    }
+    public List<Schedule> Schedules { get; set; } = new List<Schedule>();
 }
+
