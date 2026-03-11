@@ -14,13 +14,11 @@ namespace AplicationLogic.Services
 	public class AuthService : IAuthService
 	{
 		private readonly UserManager<User> _userManager;
-		private readonly SignInManager<User> _signInManager;
 		private readonly IConfiguration _config;
 
-		public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration config)
+		public AuthService(UserManager<User> userManager, IConfiguration config)
 		{
 			_userManager = userManager;
-			_signInManager = signInManager;
 			_config = config;
 		}
 
@@ -33,35 +31,37 @@ namespace AplicationLogic.Services
 				Name = request.Name
 			};
 
-			// Identity hashea el password internamente, ya no necesitamos BCrypt
+			// Identity hashes the password internally
 			var result = await _userManager.CreateAsync(user, request.Password);
 			if (!result.Succeeded) return false;
 
-			// Asignar el rol
+			// Assign role
 			await _userManager.AddToRoleAsync(user, request.Role);
 			return true;
 		}
 
 		public async Task<AuthResponse?> LoginAsync(LoginRequest request)
 		{
-			// Verifica credenciales y maneja lockout automáticamente
-			var result = await _signInManager.PasswordSignInAsync(
-				request.Email,
-				request.Password,
-				isPersistent: false,
-				lockoutOnFailure: true
-			);
-
-			if (result.IsLockedOut) return null;
-			if (!result.Succeeded) return null;
-
+			// Find user by email
 			var user = await _userManager.FindByEmailAsync(request.Email);
 			if (user == null) return null;
 
-			// Los roles ya no están en user.Role, se consultan a Identity
+			// Check if account is locked out
+			if (await _userManager.IsLockedOutAsync(user)) return null;
+
+			// Verify password without cookies (JWT only)
+			var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
+			if (!passwordValid)
+			{
+				await _userManager.AccessFailedAsync(user); // register failed attempt for lockout
+				return null;
+			}
+
+			// Reset failed attempts counter on successful login
+			await _userManager.ResetAccessFailedCountAsync(user);
+
 			var roles = await _userManager.GetRolesAsync(user);
 			string role = roles.FirstOrDefault() ?? "Client";
-
 			string token = GenerateJwtToken(user, role);
 			var expiresAt = DateTime.UtcNow.AddHours(8);
 
@@ -72,7 +72,7 @@ namespace AplicationLogic.Services
 		{
 			var claims = new[]
 			{
-                // Id ahora es string (GUID) porque viene de IdentityUser
+                // Id is string (GUID) from IdentityUser
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
 				new Claim(ClaimTypes.Email, user.Email!),
 				new Claim(ClaimTypes.Role, role),
@@ -80,7 +80,6 @@ namespace AplicationLogic.Services
 
 			var key = new SymmetricSecurityKey(
 				Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
-
 			var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
 			var token = new JwtSecurityToken(

@@ -7,10 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Interfaces\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="Hangfire.Core" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
 		<PackageReference Include="Newtonsoft.Json" />
