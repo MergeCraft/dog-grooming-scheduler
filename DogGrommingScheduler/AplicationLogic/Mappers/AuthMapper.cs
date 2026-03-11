@@ -10,13 +10,13 @@ namespace AplicationLogic.Mappers
 	{
 		// Convierte la entidad del dominio en un DTO de salida
 		// El PasswordHash es imposible que se filtre porque AuthResponse no lo tiene
-		public static AuthResponse ToResponse(User user, string token, DateTime expiresAt)
+		public static AuthResponse ToResponse(User user, string token, string role, DateTime expiresAt)
 		{
 			return new AuthResponse
 			{
 				Token = token,
 				Email = user.Email,
-				Role = user.Role,
+				Role = role,
 				ExpiresAt = expiresAt
 			};
 		}

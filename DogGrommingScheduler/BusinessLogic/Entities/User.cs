@@ -1,22 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BusinessLogic.Entities
 {
-	public class User 
-    {
-		public int Id { get; set; }
-		public string Email { get; set; } = string.Empty;
-		public string Name { get; set; }
-
-
-		// BCrypt convierte "mi123pass" → "$2a$11$xyz..." (hash irreversible)
-		public string PasswordHash { get; set; } = string.Empty;
-
-		// Rols: "Admin", "Client", "Groomer"
-		public string Role { get; set; } = "Client";
-
+	public class User : IdentityUser
+	{
+		// IdentityUser ya tiene: Id, Email, PasswordHash, UserName, etc.
+		// Solo agregás lo que es tuyo
+		public string Name { get; set; } = string.Empty;
 		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 	}
 }

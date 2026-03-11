@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\DataAccess.csproj": {}
+    "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj": {
+    "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
         "projectName": "BusinessLogic",
-        "projectPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
-        "packagesPath": "C:\\Users\\tator\\.nuget\\packages\\",
-        "outputPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "centralPackageVersionsManagementEnabled": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\tator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -56,9 +56,14 @@
               "version": "[1.8.23, )",
               "versionCentrallyManaged": true
             },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[10.0.4, )",
+              "versionCentrallyManaged": true
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[10.0.3, )",
+              "version": "[10.0.4, )",
               "versionCentrallyManaged": true
             },
             "Newtonsoft.Json": {
@@ -68,20 +73,20 @@
             }
           },
           "centralPackageVersions": {
-            "BCrypt.Net-Core": "1.6.0",
             "Hangfire.AspNetCore": "1.8.23",
             "Hangfire.Core": "1.8.23",
             "Hangfire.SqlServer": "1.8.23",
-            "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.3",
+            "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.4",
             "Microsoft.AspNetCore.Components.WebAssembly": "10.0.3",
             "Microsoft.AspNetCore.Components.WebAssembly.DevServer": "10.0.3",
-            "Microsoft.AspNetCore.OpenApi": "10.0.3",
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "10.0.4",
+            "Microsoft.AspNetCore.OpenApi": "10.0.4",
             "Microsoft.Data.SqlClient": "6.1.4",
-            "Microsoft.EntityFrameworkCore": "10.0.3",
-            "Microsoft.EntityFrameworkCore.Design": "10.0.3",
-            "Microsoft.EntityFrameworkCore.SqlServer": "10.0.3",
-            "Microsoft.EntityFrameworkCore.Tools": "10.0.3",
-            "Microsoft.Extensions.Configuration": "10.0.3",
+            "Microsoft.EntityFrameworkCore": "10.0.4",
+            "Microsoft.EntityFrameworkCore.Design": "10.0.4",
+            "Microsoft.EntityFrameworkCore.SqlServer": "10.0.4",
+            "Microsoft.EntityFrameworkCore.Tools": "10.0.4",
+            "Microsoft.Extensions.Configuration": "10.0.4",
             "Microsoft.IdentityModel.Tokens": "8.16.0",
             "Newtonsoft.Json": "13.0.3",
             "Portable.BouncyCastle": "1.9.0",
@@ -383,21 +388,21 @@
         }
       }
     },
-    "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\tator\\.nuget\\packages\\",
-        "outputPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "centralPackageVersionsManagementEnabled": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\tator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -412,8 +417,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj": {
-                "projectPath": "C:\\development\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj"
+              "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Documents\\Mis cosas\\Programación\\dog-grooming-scheduler\\DogGrommingScheduler\\BusinessLogic\\BusinessLogic.csproj"
               }
             }
           }
@@ -436,37 +441,37 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[10.0.3, )",
+              "version": "[10.0.4, )",
               "versionCentrallyManaged": true
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[10.0.3, )",
+              "version": "[10.0.4, )",
               "versionCentrallyManaged": true
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.3, )",
+              "version": "[10.0.4, )",
               "versionCentrallyManaged": true
             }
           },
           "centralPackageVersions": {
-            "BCrypt.Net-Core": "1.6.0",
             "Hangfire.AspNetCore": "1.8.23",
             "Hangfire.Core": "1.8.23",
             "Hangfire.SqlServer": "1.8.23",
-            "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.3",
+            "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.4",
             "Microsoft.AspNetCore.Components.WebAssembly": "10.0.3",
             "Microsoft.AspNetCore.Components.WebAssembly.DevServer": "10.0.3",
-            "Microsoft.AspNetCore.OpenApi": "10.0.3",
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "10.0.4",
+            "Microsoft.AspNetCore.OpenApi": "10.0.4",
             "Microsoft.Data.SqlClient": "6.1.4",
-            "Microsoft.EntityFrameworkCore": "10.0.3",
-            "Microsoft.EntityFrameworkCore.Design": "10.0.3",
-            "Microsoft.EntityFrameworkCore.SqlServer": "10.0.3",
-            "Microsoft.EntityFrameworkCore.Tools": "10.0.3",
-            "Microsoft.Extensions.Configuration": "10.0.3",
+            "Microsoft.EntityFrameworkCore": "10.0.4",
+            "Microsoft.EntityFrameworkCore.Design": "10.0.4",
+            "Microsoft.EntityFrameworkCore.SqlServer": "10.0.4",
+            "Microsoft.EntityFrameworkCore.Tools": "10.0.4",
+            "Microsoft.Extensions.Configuration": "10.0.4",
             "Microsoft.IdentityModel.Tokens": "8.16.0",
             "Newtonsoft.Json": "13.0.3",
             "Portable.BouncyCastle": "1.9.0",
