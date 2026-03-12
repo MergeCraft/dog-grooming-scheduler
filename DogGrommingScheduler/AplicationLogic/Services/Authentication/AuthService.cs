@@ -42,7 +42,7 @@ namespace AplicationLogic.Services
 
 		public async Task<AuthResponse?> LoginAsync(LoginRequest request)
 		{
-			// Find user by email
+			
 			var user = await _userManager.FindByEmailAsync(request.Email);
 			if (user == null) return null;
 

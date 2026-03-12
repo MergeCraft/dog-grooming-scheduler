@@ -2,6 +2,7 @@
 using Shared.DTOs.ReserveMapper;
 using AplicationLogic.Interfaces;
 using BusinessLogic.Results;
+using BusinessLogic.Entities;
 using Hangfire;
 using System;
 using System.Threading.Tasks;
@@ -24,12 +25,12 @@ namespace AplicationLogic.Services.Scheduler
 
         public async Task<Result> ProcessNewReserveAsync(CreateReserveDto dto)
         {
-            if (dto == null) return Result.Failure(new[] { new BusinessLogic.Results.Error("Error.InvalidInput", "DTO is null") });
+            if (dto == null) return Result.Failure(new[] { new Error("Error.InvalidInput", "DTO is null") });
 
             // Map shared DTO model to domain Reserve entity
             var dtoModel = CreateReserveMapper.FromDto(dto);
 
-            var domainReserve = new BusinessLogic.Entities.Reserve
+            var domainReserve = new Reserve
             {
                 Id = dtoModel.Id == Guid.Empty ? Guid.NewGuid() : dtoModel.Id,
                 ReservationDate = dtoModel.ReservationDate.Date,
