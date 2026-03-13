@@ -8,7 +8,6 @@
 		<Folder Include="Services\Authentication\" />
 	</ItemGroup>
 	<ItemGroup>
-		<!-- BCrypt.Net-Core se elimina, Identity maneja el hashing ahora -->
 		<PackageReference Include="Hangfire.Core" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" />

@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="AplicationLogic.Tests/AplicationLogic.Tests.csproj" Id="5b176ce1-289a-4ebe-b1a7-a45152fe5cff" />
   <Project Path="AplicationLogic/AplicationLogic.csproj" />
   <Project Path="BlazorClient/BlazorClient.csproj" Id="3e5204ed-645c-4dc4-80bb-3f32bc1a8ff5" />
   <Project Path="BusinessLogic/BusinessLogic.csproj" />
