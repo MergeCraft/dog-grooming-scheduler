@@ -14,13 +14,15 @@ namespace AplicationLogic.Services.Scheduler
     {
         private readonly IReserveRepository _reserveRepository;
         private readonly IBackgroundJobClient _backgroundJobs;
+        private readonly IBackgroundJobService _backgroundJobService;
         private readonly IEmailService _emailService;
 
-        public ReserveService(IReserveRepository repo, IBackgroundJobClient jobs, IEmailService email)
+        public ReserveService(IReserveRepository repo, IBackgroundJobClient jobs, IEmailService email, IBackgroundJobService backgroundJobService)
         {
             _reserveRepository = repo;
             _backgroundJobs = jobs;
             _emailService = email;
+            _backgroundJobService = backgroundJobService;
         }
 
         public async Task<Result> ProcessNewReserveAsync(CreateReserveDto dto)
@@ -46,13 +48,27 @@ namespace AplicationLogic.Services.Scheduler
 
             var appointmentDateTime = domainReserve.ReservationDate.Date + domainReserve.TimeSlot;
 
-            _backgroundJobs.Enqueue(() =>
+            // Use background job service wrapper to allow mocking in tests
+            _backgroundJobService.Enqueue(() =>
                 _emailService.SendAppointmentConfirmationAsync(
                     dto.ClientEmail,
                     dto.ClientName,
                     appointmentDateTime));
 
             DateTime reminderTime = appointmentDateTime.AddHours(-2);
+            if (reminderTime > DateTime.Now)
+            {
+                string jobId = _backgroundJobService.Schedule(() =>
+                    _emailService.SendReminderAppointmentAsync(
+                        dto.ClientEmail,
+                        dto.ClientName,
+                        appointmentDateTime,
+                        dto.GroomerName),
+                    reminderTime);
+
+                domainReserve.ReminderJobId = jobId;
+                await _reserveRepository.UpdateAsync(domainReserve);
+            }
 
             if (reminderTime > DateTime.Now)
             {
@@ -80,7 +96,7 @@ namespace AplicationLogic.Services.Scheduler
 
             if (!string.IsNullOrEmpty(reserve.ReminderJobId))
             {
-                _backgroundJobs.Delete(reserve.ReminderJobId);
+                _backgroundJobService.Delete(reserve.ReminderJobId);
             }
 
             reserve.IsCanceled = true;

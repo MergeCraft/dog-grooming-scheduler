@@ -7,7 +7,6 @@ public class Schedule
 {
     public Guid Id { get; set; }
     public Guid PetGroomerId { get; set; }
-    public PetGroomer Groomer { get; set; } = null!;
     public DateTime Date { get; set; }
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
