@@ -3,7 +3,6 @@ using Shared.DTOs.ReserveMapper;
 using AplicationLogic.Interfaces;
 using BusinessLogic.Results;
 using BusinessLogic.Entities;
-using Hangfire;
 using System;
 using System.Threading.Tasks;
 using BusinessLogic.RepositoryInterfaces;
@@ -13,15 +12,13 @@ namespace AplicationLogic.Services.Scheduler
     public class ReserveService : IReserveService
     {
         private readonly IReserveRepository _reserveRepository;
-        private readonly IBackgroundJobClient _backgroundJobs;
         private readonly IBackgroundJobService _backgroundJobService;
-        private readonly IEmailService _emailService;
+        private readonly IEmailService _email_service;
 
-        public ReserveService(IReserveRepository repo, IBackgroundJobClient jobs, IEmailService email, IBackgroundJobService backgroundJobService)
+        public ReserveService(IReserveRepository repo, IEmailService email, IBackgroundJobService backgroundJobService)
         {
             _reserveRepository = repo;
-            _backgroundJobs = jobs;
-            _emailService = email;
+            _email_service = email;
             _backgroundJobService = backgroundJobService;
         }
 
@@ -50,7 +47,7 @@ namespace AplicationLogic.Services.Scheduler
 
             // Use background job service wrapper to allow mocking in tests
             _backgroundJobService.Enqueue(() =>
-                _emailService.SendAppointmentConfirmationAsync(
+                _email_service.SendAppointmentConfirmationAsync(
                     dto.ClientEmail,
                     dto.ClientName,
                     appointmentDateTime));
@@ -58,8 +55,9 @@ namespace AplicationLogic.Services.Scheduler
             DateTime reminderTime = appointmentDateTime.AddHours(-2);
             if (reminderTime > DateTime.Now)
             {
+
                 string jobId = _backgroundJobService.Schedule(() =>
-                    _emailService.SendReminderAppointmentAsync(
+                    _email_service.SendReminderAppointmentAsync(
                         dto.ClientEmail,
                         dto.ClientName,
                         appointmentDateTime,
@@ -69,20 +67,7 @@ namespace AplicationLogic.Services.Scheduler
                 domainReserve.ReminderJobId = jobId;
                 await _reserveRepository.UpdateAsync(domainReserve);
             }
-
-            if (reminderTime > DateTime.Now)
-            {
-                string jobId = _backgroundJobs.Schedule(() =>
-                    _emailService.SendReminderAppointmentAsync(
-                        dto.ClientEmail,
-                        dto.ClientName,
-                        appointmentDateTime,
-                        dto.GroomerName),
-                    reminderTime);
-
-                domainReserve.ReminderJobId = jobId;
-                await _reserveRepository.UpdateAsync(domainReserve);
-            }
+            // NOTE: original Hangfire client call removed — use the injected IBackgroundJobService wrapper above.
 
             return Result.Success();
         }

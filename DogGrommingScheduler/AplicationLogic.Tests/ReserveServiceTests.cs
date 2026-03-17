@@ -6,6 +6,7 @@ using AutoFixture;
 using AutoFixture.AutoMoq;
 using FluentAssertions;
 using Hangfire;
+using System.Linq.Expressions;
 using AplicationLogic.Services.Scheduler;
 using BusinessLogic.RepositoryInterfaces;
 using AplicationLogic.Interfaces;
@@ -19,8 +20,7 @@ namespace AplicationLogic.Tests
     {
         private readonly IFixture _fixture;
         private readonly Mock<IReserveRepository> _reserveRepoMock;
-        private readonly Mock<IBackgroundJobClient> _backgroundJobsMock;
-        private readonly Mock<AplicationLogic.Interfaces.IBackgroundJobService> _bgServiceMock;
+        private readonly Mock<IBackgroundJobService> _bgServiceMock;
         private readonly Mock<IEmailService> _emailServiceMock;
         private readonly ReserveService _sut;
 
@@ -28,11 +28,10 @@ namespace AplicationLogic.Tests
         {
             _fixture = new Fixture().Customize(new AutoMoqCustomization());
             _reserveRepoMock = _fixture.Freeze<Mock<IReserveRepository>>();
-            _backgroundJobsMock = _fixture.Freeze<Mock<IBackgroundJobClient>>();
-            _bgServiceMock = _fixture.Freeze<Mock<AplicationLogic.Interfaces.IBackgroundJobService>>();
+            _bgServiceMock = _fixture.Freeze<Mock<IBackgroundJobService>>();
             _emailServiceMock = _fixture.Freeze<Mock<IEmailService>>();
 
-            _sut = new ReserveService(_reserveRepoMock.Object, _backgroundJobsMock.Object, _emailServiceMock.Object, _bgServiceMock.Object);
+            _sut = new ReserveService(_reserveRepoMock.Object, _emailServiceMock.Object, _bgServiceMock.Object);
         }
 
         [Fact]
@@ -60,16 +59,20 @@ namespace AplicationLogic.Tests
                 .With(x => x.GroomerName, "Groomer Name")
                 .Create();
 
+            Reserve? addedReserve = null;
+            Reserve? updatedReserve = null;
             _reserveRepoMock.Setup(r => r.AddAsync(It.IsAny<Reserve>()))
+                .Callback<Reserve>(r => addedReserve = r)
                 .ReturnsAsync(Result.Success());
 
             // Use the background job service mock instead of Hangfire extension methods
-            _bgServiceMock.Setup(b => b.Enqueue(It.IsAny<System.Linq.Expressions.Expression<Action>>()));
+            _bgServiceMock.Setup(b => b.Enqueue(It.IsAny<Expression<Action>>()));
 
-            _bgServiceMock.Setup(b => b.Schedule(It.IsAny<System.Linq.Expressions.Expression<Action>>(), It.IsAny<DateTime>()))
+            _bgServiceMock.Setup(b => b.Schedule(It.IsAny<Expression<Action>>(), It.IsAny<DateTime>()))
                 .Returns("job-id-123");
 
             _reserveRepoMock.Setup(r => r.UpdateAsync(It.IsAny<Reserve>()))
+                .Callback<Reserve>(r => updatedReserve = r)
                 .ReturnsAsync(Result.Success());
 
             // Act
@@ -77,11 +80,20 @@ namespace AplicationLogic.Tests
 
             // Assert
             result.IsSuccess.Should().BeTrue();
+
+            // Reserve was created and persisted via repository
             _reserveRepoMock.Verify(r => r.AddAsync(It.IsAny<Reserve>()), Times.Once);
-            // Background job scheduling and enqueuing are invoked via Hangfire expressions; avoid expression-based
-            // verification here because Moq cannot reliably compare Expression<Action> arguments. Instead verify
-            // repository interactions and overall result.
+            addedReserve.Should().NotBeNull();
+            addedReserve!.ReservationDate.Should().Be(dto.ReservationDate.Date);
+            addedReserve.TimeSlot.Should().Be(dto.TimeSlot);
+            addedReserve.ClientId.Should().Be(dto.ClientId);
+
+            // Reminder was scheduled and reserve updated with job id
+            _bgServiceMock.Verify(b => b.Enqueue(It.IsAny<Expression<Action>>()), Times.Once);
+            _bgServiceMock.Verify(b => b.Schedule(It.IsAny<Expression<Action>>(), It.IsAny<DateTime>()), Times.Once);
             _reserveRepoMock.Verify(r => r.UpdateAsync(It.IsAny<Reserve>()), Times.Once);
+            updatedReserve.Should().NotBeNull();
+            updatedReserve!.ReminderJobId.Should().Be("job-id-123");
         }
 
         [Fact]
@@ -96,10 +108,13 @@ namespace AplicationLogic.Tests
                 .With(x => x.GroomerName, "Groomer Name")
                 .Create();
 
+
+            Reserve? addedReserve = null;
             _reserveRepoMock.Setup(r => r.AddAsync(It.IsAny<Reserve>()))
+                .Callback<Reserve>(r => addedReserve = r)
                 .ReturnsAsync(Result.Success());
 
-            _bgServiceMock.Setup(b => b.Enqueue(It.IsAny<System.Linq.Expressions.Expression<Action>>()));
+            _bgServiceMock.Setup(b => b.Enqueue(It.IsAny<Expression<Action>>()));
 
             _reserveRepoMock.Setup(r => r.UpdateAsync(It.IsAny<Reserve>()))
                 .ReturnsAsync(Result.Success());
@@ -109,7 +124,16 @@ namespace AplicationLogic.Tests
 
             // Assert
             result.IsSuccess.Should().BeTrue();
-            _backgroundJobsMock.Verify(b => b.Schedule(It.IsAny<System.Linq.Expressions.Expression<Action>>(), It.IsAny<DateTime>()), Times.Never);
+
+            // Reserve was created and persisted via repository
+            _reserveRepoMock.Verify(r => r.AddAsync(It.IsAny<Reserve>()), Times.Once);
+            addedReserve.Should().NotBeNull();
+            addedReserve!.ReservationDate.Should().Be(dto.ReservationDate.Date);
+            addedReserve.TimeSlot.Should().Be(dto.TimeSlot);
+            addedReserve.ClientId.Should().Be(dto.ClientId);
+
+            // No reminder scheduled and no update called
+            _bgServiceMock.Verify(b => b.Schedule(It.IsAny<Expression<Action>>(), It.IsAny<DateTime>()), Times.Never);
             _reserveRepoMock.Verify(r => r.UpdateAsync(It.IsAny<Reserve>()), Times.Never);
         }
 
@@ -119,7 +143,7 @@ namespace AplicationLogic.Tests
             // Arrange
             var id = Guid.NewGuid();
             _reserveRepoMock.Setup(r => r.GetByIdAsync(It.IsAny<Guid>()))
-                .ReturnsAsync(Result<Reserve>.Failure(new[] { new BusinessLogic.Results.Error("NotFound", "Not found") }));
+                .ReturnsAsync(Result<Reserve>.Failure(new[] { new Error("NotFound", "Not found") }));
 
             // Act
             var result = await _sut.CancelReserveAsync(id);
