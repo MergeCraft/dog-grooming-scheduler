@@ -16,10 +16,10 @@ public class AuthController : ControllerBase
 	[HttpPost("register")]
 	public async Task<IActionResult> Register([FromBody] RegisterRequest request)
 	{
-		bool created = await _authService.RegisterAsync(request);
+		var errors = await _authService.RegisterAsync(request);
 
-		if (!created)
-			return Conflict(new { message = "El email ya está registrado" });
+		if (errors != null)
+			return Conflict(new { messages = errors });
 
 		return Ok(new { message = "Usuario creado exitosamente" });
 	}

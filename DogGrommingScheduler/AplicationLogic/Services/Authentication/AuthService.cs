@@ -22,7 +22,8 @@ namespace AplicationLogic.Services
 			_config = config;
 		}
 
-		public async Task<bool> RegisterAsync(RegisterRequest request)
+		// Returns null on success, or a list of error messages on failure
+		public async Task<IEnumerable<string>?> RegisterAsync(RegisterRequest request)
 		{
 			var user = new User
 			{
@@ -33,16 +34,18 @@ namespace AplicationLogic.Services
 
 			// Identity hashes the password internally
 			var result = await _userManager.CreateAsync(user, request.Password);
-			if (!result.Succeeded) return false;
+
+			if (!result.Succeeded)
+				return result.Errors.Select(e => e.Description); // return Identity's actual errors
 
 			// Assign role
 			await _userManager.AddToRoleAsync(user, request.Role);
-			return true;
+			return null; // null means success
 		}
 
 		public async Task<AuthResponse?> LoginAsync(LoginRequest request)
 		{
-			
+
 			var user = await _userManager.FindByEmailAsync(request.Email);
 			if (user == null) return null;
 
