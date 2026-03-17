@@ -8,7 +8,6 @@ namespace DataAccess.Repositories
 	{
 		public ContextDB(DbContextOptions<ContextDB> options) : base(options) { }
 
-		// DbSet<User> ya no hace falta, IdentityDbContext lo incluye automáticamente
 		public DbSet<Client> Clients { get; set; }
 		public DbSet<PetGroomer> PetGroomers { get; set; }
 		public DbSet<Reserve> Reserves { get; set; }
@@ -16,7 +15,6 @@ namespace DataAccess.Repositories
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			// Debe ir primero, configura todas las tablas de Identity
 			base.OnModelCreating(modelBuilder);
 
 			// 1. Client configuration
@@ -38,9 +36,8 @@ namespace DataAccess.Repositories
 					  .WithOne()
 					  .HasForeignKey<PetGroomer>(g => g.UserId);
 
-				// A groomer has many schedules
 				entity.HasMany(g => g.Schedules)
-					  .WithOne(s => s.Groomer)
+					  .WithOne()
 					  .HasForeignKey(s => s.PetGroomerId)
 					  .OnDelete(DeleteBehavior.Cascade);
 			});
@@ -51,7 +48,7 @@ namespace DataAccess.Repositories
 				entity.HasKey(s => s.Id);
 
 				entity.HasMany(s => s.Reservations)
-					  .WithOne(r => r.Schedule)
+					  .WithOne()
 					  .HasForeignKey(r => r.ScheduleId)
 					  .OnDelete(DeleteBehavior.Restrict);
 			});

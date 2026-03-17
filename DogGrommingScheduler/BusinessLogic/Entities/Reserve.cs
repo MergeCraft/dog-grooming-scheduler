@@ -19,7 +19,6 @@ namespace BusinessLogic.Entities
         public TimeSpan TimeSlot { get; set; } // The exact start time (e.g., 10:30 AM)
 
         public Guid ScheduleId { get; set; }
-        public Schedule Schedule { get; set; }
 
         public Guid ClientId { get; set; }
         public Client Client { get; set; }
