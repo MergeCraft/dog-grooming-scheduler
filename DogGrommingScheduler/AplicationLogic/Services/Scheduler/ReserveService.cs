@@ -1,12 +1,13 @@
-﻿using Shared.DTOs;
-using Shared.DTOs.ReserveMapper;
-using AplicationLogic.Interfaces;
-using BusinessLogic.Results;
+﻿using AplicationLogic.Interfaces;
 using BusinessLogic.Entities;
+using BusinessLogic.RepositoriesInterfaces;
+using BusinessLogic.RepositoryInterfaces;
+using BusinessLogic.Results;
 using Hangfire;
+using Shared.DTOs;
+using Shared.DTOs.ReserveMapper;
 using System;
 using System.Threading.Tasks;
-using BusinessLogic.RepositoryInterfaces;
 
 namespace AplicationLogic.Services.Scheduler
 {
@@ -15,12 +16,14 @@ namespace AplicationLogic.Services.Scheduler
         private readonly IReserveRepository _reserveRepository;
         private readonly IBackgroundJobClient _backgroundJobs;
         private readonly IEmailService _emailService;
+        private readonly IScheduleRepository _scheduleRepository;
 
-        public ReserveService(IReserveRepository repo, IBackgroundJobClient jobs, IEmailService email)
+        public ReserveService(IReserveRepository repo, IBackgroundJobClient jobs, IEmailService email,IScheduleRepository scheduleRepository)
         {
             _reserveRepository = repo;
             _backgroundJobs = jobs;
             _emailService = email;
+            _scheduleRepository = scheduleRepository;
         }
 
         public async Task<Result> ProcessNewReserveAsync(CreateReserveDto dto)
@@ -85,6 +88,24 @@ namespace AplicationLogic.Services.Scheduler
 
             reserve.IsCanceled = true;
             return await _reserveRepository.UpdateAsync(reserve);
+        }
+        public async Task<Result<ScheduleDto>> GetScheduleForReservationAsync(Guid groomerId, DateTime date)
+        {
+            var result = await _scheduleRepository.GetByGroomerAndDateAsync(groomerId, date);
+
+            if (result.IsFailure)
+                return Result<ScheduleDto>.Failure(result.Errors);
+
+            if (result.Value == null)
+            {
+                return Result<ScheduleDto>.Failure(new[] {
+            new Error("Error.NotFound", "No hay agenda precargada para este peluquero en esa fecha.")
+        });
+            }
+
+            var dto = Shared.DTOs.ScheduleMappers.ScheduleMapper.ToDto(result.Value);
+
+            return Result<ScheduleDto>.Success(dto);
         }
     }
 }

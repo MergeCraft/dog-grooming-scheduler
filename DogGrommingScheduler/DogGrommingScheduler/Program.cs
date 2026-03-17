@@ -1,9 +1,11 @@
 using AplicationLogic.Interfaces;
 using AplicationLogic.Services;
 using AplicationLogic.Services.Email;
+using AplicationLogic.Services.PetGroomer;
 using AplicationLogic.Services.Scheduler;
 using AplicationLogic.ServicesInterfaces;
 using BusinessLogic.Entities;
+using BusinessLogic.RepositoriesInterfaces;
 using BusinessLogic.RepositoryInterfaces;
 using DataAccess.Repositories;
 using Hangfire;
@@ -66,6 +68,9 @@ builder.Services.AddHttpClient<ResendClient>();
 builder.Services.AddTransient<IResend, ResendClient>();
 builder.Services.AddScoped<IEmailService, ResendEmailService>();
 builder.Services.AddScoped<IReserveService, ReserveService>();
+builder.Services.AddScoped<IScheduleRepository, ScheduleRepositoryEF>();
+builder.Services.AddScoped<IPetGroomerRepository, PetGroomerRepositoryEF>();
+builder.Services.AddScoped<IPetGroomerService, PetGroomerService>();
 
 // ── IDENTITY ───────────────────────────────────────────
 builder.Services.AddIdentityCore<User>(options =>

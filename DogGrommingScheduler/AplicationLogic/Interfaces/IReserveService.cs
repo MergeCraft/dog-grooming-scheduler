@@ -11,5 +11,6 @@ namespace AplicationLogic.Interfaces
     {
         Task<Result> ProcessNewReserveAsync(CreateReserveDto dto);
         Task<Result> CancelReserveAsync(Guid reserveId);
+        Task<Result<ScheduleDto>> GetScheduleForReservationAsync(Guid groomerId, DateTime date);
     }
 }

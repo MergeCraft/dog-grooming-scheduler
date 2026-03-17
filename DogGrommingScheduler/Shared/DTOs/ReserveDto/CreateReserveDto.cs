@@ -6,23 +6,25 @@ namespace Shared.DTOs
 {
     public class CreateReserveDto
     {
-        [Required(ErrorMessage = "Reservation date is required.")]
+        [Required(ErrorMessage = "La fecha es obligatoria.")]
         public DateTime ReservationDate { get; set; }
 
-        [Required(ErrorMessage = "Start time is required.")]
+        [Required(ErrorMessage = "El horario es obligatorio.")]
         public TimeSpan TimeSlot { get; set; }
 
-        [Required(ErrorMessage = "A groomer must be selected.")]
+        [Required]
         public Guid PetGroomerId { get; set; }
 
-        [Required(ErrorMessage = "Client is required.")]
+        [Required]
         public Guid ClientId { get; set; }
 
-        [Required(ErrorMessage = "Pet size must be specified.")]
+        [Required]
         public DogSize PetSize { get; set; }
+
         public Guid ScheduleId { get; set; }
-        public string ClientEmail { get; set; }
-        public string ClientName { get; set; }
-        public string GroomerName { get; set; }
+
+        public string? ClientEmail { get; set; }
+        public string? ClientName { get; set; }
+        public string? GroomerName { get; set; }
     }
 }

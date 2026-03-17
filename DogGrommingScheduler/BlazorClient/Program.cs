@@ -1,5 +1,6 @@
 using BlazorClient;
 using BlazorClient.Handlers.Auth;
+using BlazorClient.Services;
 using BlazorClient.Services.Auth;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
@@ -19,6 +20,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(apiBase)
 // Register the custom auth state provider.
 // AddScoped means one instance per browser session.
 builder.Services.AddScoped<CustomAuthStateProvider>();
+builder.Services.AddScoped<PetGroomerService>();
 
 // Tell Blazor to use our custom provider when it needs to know the auth state.
 // This is what makes [Authorize] and <AuthorizeView> work.

@@ -61,5 +61,15 @@ namespace WebAPI.Controllers
 
             return BadRequest(result.Errors);
         }
+        [HttpGet("schedule/{groomerId}/{date}")]
+        public async Task<IActionResult> GetSchedule(Guid groomerId, DateTime date)
+        {
+            var result = await _reserveService.GetScheduleForReservationAsync(groomerId, date);
+
+            if (result.IsFailure)
+                return HandleErrorResult(result);
+
+            return Ok(result.Value);
+        }
     }
 }
