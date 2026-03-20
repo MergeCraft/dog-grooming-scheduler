@@ -73,19 +73,16 @@
 
 	private async Task HandleValidSubmit()
 	{
-		// Reset UI state before each attempt
 		errorMessage = null;
 		loginSuccess = false;
 		isSubmitting = true;
 
-		// Map the form model to the shared DTO
 		var request = new Shared.DTOs.LoginRequest
 		{
 			Email = loginModel.Email!,
 			Password = loginModel.Password!
 		};
 
-		// AuthService returns null on success, or an error message string on failure
 		var error = await AuthService.LoginAsync(request);
 
 		if (error is not null)
@@ -95,15 +92,12 @@
 		else
 		{
 			loginSuccess = true;
-			// Redirect to dashboard after successful login
-			Navigation.NavigateTo("/dashboard");
+			Navigation.NavigateTo("/reserve");
 		}
 
 		isSubmitting = false;
 	}
 
-	// Local view model for form binding and validation only
-	// Kept separate from the shared DTO to avoid coupling the UI to the API contract
 	public class LoginModel
 	{
 		[Required(ErrorMessage = "Email is required.")]

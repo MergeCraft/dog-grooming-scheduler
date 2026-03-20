@@ -109,5 +109,22 @@ namespace DataAccess.Repositories
                 return Result.Failure(Error.Unexpected);
             }
         }
+        public async Task<Result<IEnumerable<Reserve>>> GetByClientIdAsync(Guid clientId)
+        {
+            try
+            {
+                var reserves = await _db.Reserves
+                    .Where(r => r.ClientId == clientId)
+                    .OrderByDescending(r => r.ReservationDate)
+                    .ThenByDescending(r => r.TimeSlot)
+                    .ToListAsync();
+
+                return Result<IEnumerable<Reserve>>.Success(reserves);
+            }
+            catch (Exception)
+            {
+                return Result<IEnumerable<Reserve>>.Failure(Error.Unexpected);
+            }
+        }
     }
 }

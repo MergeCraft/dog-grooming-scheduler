@@ -26,7 +26,7 @@ namespace AplicationLogic.Services.Email
                 Subject = subject,
                 HtmlBody = htmlContent
             };
-            await _resend.EmailSendAsync(message);
+           /* await _resend.EmailSendAsync(message);*/
         }
 
         public async Task SendReminderAppointmentAsync(string toEmail, string clientName, DateTime dateAppointment, string hairstylistName)

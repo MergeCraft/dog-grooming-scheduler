@@ -70,6 +70,7 @@ builder.Services.AddScoped<IEmailService, ResendEmailService>();
 builder.Services.AddScoped<IReserveService, ReserveService>();
 builder.Services.AddScoped<IScheduleRepository, ScheduleRepositoryEF>();
 builder.Services.AddScoped<IPetGroomerRepository, PetGroomerRepositoryEF>();
+builder.Services.AddScoped<IClientRepository, ClientRepositoryEF>();
 builder.Services.AddScoped<IPetGroomerService, PetGroomerService>();
 
 // ── IDENTITY ───────────────────────────────────────────

@@ -21,6 +21,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(apiBase)
 // AddScoped means one instance per browser session.
 builder.Services.AddScoped<CustomAuthStateProvider>();
 builder.Services.AddScoped<PetGroomerService>();
+builder.Services.AddScoped<ReserveService>();
 
 // Tell Blazor to use our custom provider when it needs to know the auth state.
 // This is what makes [Authorize] and <AuthorizeView> work.

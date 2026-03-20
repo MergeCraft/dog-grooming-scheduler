@@ -6,6 +6,8 @@ namespace Shared.DTOs
 {
     public class CreateReserveDto
     {
+        public Guid Id { get; set; }
+
         [Required(ErrorMessage = "La fecha es obligatoria.")]
         public DateTime ReservationDate { get; set; }
 
@@ -23,7 +25,12 @@ namespace Shared.DTOs
 
         public Guid ScheduleId { get; set; }
 
+        public bool IsCanceled { get; set; } = false;
+
+        [Required(ErrorMessage = "El email es necesario para el recordatorio.")]
+        [EmailAddress(ErrorMessage = "Formato de email inválido.")]
         public string? ClientEmail { get; set; }
+
         public string? ClientName { get; set; }
         public string? GroomerName { get; set; }
     }

@@ -71,5 +71,14 @@ namespace WebAPI.Controllers
 
             return Ok(result.Value);
         }
+        [HttpGet("my-reserves/{userId}")]
+        public async Task<IActionResult> GetMyReserves(Guid userId)
+        {
+            var result = await _reserveService.GetUserReservesAsync(userId);
+
+            if (result.IsFailure) return BadRequest(result.Errors);
+
+            return Ok(result.Value);
+        }
     }
 }

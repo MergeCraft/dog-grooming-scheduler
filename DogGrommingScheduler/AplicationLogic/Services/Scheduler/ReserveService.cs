@@ -5,6 +5,7 @@ using BusinessLogic.RepositoryInterfaces;
 using BusinessLogic.Results;
 using Hangfire;
 using Shared.DTOs;
+using Shared.DTOs.ReserveDto;
 using Shared.DTOs.ReserveMapper;
 using System;
 using System.Threading.Tasks;
@@ -17,42 +18,43 @@ namespace AplicationLogic.Services.Scheduler
         private readonly IBackgroundJobClient _backgroundJobs;
         private readonly IEmailService _emailService;
         private readonly IScheduleRepository _scheduleRepository;
+        private readonly IClientRepository _clientRepository;
 
-        public ReserveService(IReserveRepository repo, IBackgroundJobClient jobs, IEmailService email,IScheduleRepository scheduleRepository)
+        public ReserveService(IReserveRepository repo, IBackgroundJobClient jobs, IEmailService email,IScheduleRepository scheduleRepository, IClientRepository clientRepository)
         {
             _reserveRepository = repo;
             _backgroundJobs = jobs;
             _emailService = email;
             _scheduleRepository = scheduleRepository;
+            _clientRepository = clientRepository;
         }
 
         public async Task<Result> ProcessNewReserveAsync(CreateReserveDto dto)
         {
-            if (dto == null) return Result.Failure(new[] { new Error("Error.InvalidInput", "DTO is null") });
+            if (dto == null)
+                return Result.Failure(new[] { new Error("Error.InvalidInput", "DTO is null") });
 
-            // Map shared DTO model to domain Reserve entity
-            var dtoModel = CreateReserveMapper.FromDto(dto);
+            var clientResult = await _clientRepository.GetByUserIdAsync(dto.ClientId);
 
-            var domainReserve = new Reserve
+            if (clientResult.IsFailure)
             {
-                Id = dtoModel.Id == Guid.Empty ? Guid.NewGuid() : dtoModel.Id,
-                ReservationDate = dtoModel.ReservationDate.Date,
-                TimeSlot = dtoModel.TimeSlot,
-                ScheduleId = dtoModel.ScheduleId,
-                ClientId = dtoModel.ClientId,
-                PetSize = (BusinessLogic.Entities.DogSize)dtoModel.PetSize,
-                IsCanceled = dtoModel.IsCanceled
-            };
+                return Result.Failure(clientResult.Errors);
+            }
+
+            var domainReserve = CreateReserveMapper.ToEntity(dto);
+
+            domainReserve.ClientId = clientResult.Value.Id;
 
             var saveResult = await _reserveRepository.AddAsync(domainReserve);
             if (saveResult.IsFailure) return saveResult;
 
             var appointmentDateTime = domainReserve.ReservationDate.Date + domainReserve.TimeSlot;
 
+            // 6. ENVIAR CONFIRMACIÓN
             _backgroundJobs.Enqueue(() =>
                 _emailService.SendAppointmentConfirmationAsync(
                     dto.ClientEmail,
-                    dto.ClientName,
+                    clientResult.Value.User.Name ?? dto.ClientName, 
                     appointmentDateTime));
 
             DateTime reminderTime = appointmentDateTime.AddHours(-2);
@@ -62,7 +64,7 @@ namespace AplicationLogic.Services.Scheduler
                 string jobId = _backgroundJobs.Schedule(() =>
                     _emailService.SendReminderAppointmentAsync(
                         dto.ClientEmail,
-                        dto.ClientName,
+                        clientResult.Value.User.Name ?? dto.ClientName,
                         appointmentDateTime,
                         dto.GroomerName),
                     reminderTime);
@@ -89,6 +91,7 @@ namespace AplicationLogic.Services.Scheduler
             reserve.IsCanceled = true;
             return await _reserveRepository.UpdateAsync(reserve);
         }
+
         public async Task<Result<ScheduleDto>> GetScheduleForReservationAsync(Guid groomerId, DateTime date)
         {
             var result = await _scheduleRepository.GetByGroomerAndDateAsync(groomerId, date);
@@ -99,13 +102,24 @@ namespace AplicationLogic.Services.Scheduler
             if (result.Value == null)
             {
                 return Result<ScheduleDto>.Failure(new[] {
-            new Error("Error.NotFound", "No hay agenda precargada para este peluquero en esa fecha.")
-        });
+                    new Error("Error.NotFound", "No hay agenda precargada para este peluquero en esa fecha.")
+                });
             }
 
             var dto = Shared.DTOs.ScheduleMappers.ScheduleMapper.ToDto(result.Value);
-
             return Result<ScheduleDto>.Success(dto);
+        }
+        public async Task<Result<IEnumerable<MyReserveDto>>> GetUserReservesAsync(Guid userId)
+        {
+            var clientResult = await _clientRepository.GetByUserIdAsync(userId);
+            if (clientResult.IsFailure) return Result<IEnumerable<MyReserveDto>>.Failure(clientResult.Errors);
+
+            var reservesResult = await _reserveRepository.GetByClientIdAsync(clientResult.Value.Id);
+            if (reservesResult.IsFailure) return Result<IEnumerable<MyReserveDto>>.Failure(reservesResult.Errors);
+
+            var dtos = reservesResult.Value.Select(r => MyReserveMapper.ToDto(r));
+
+            return Result<IEnumerable<MyReserveDto>>.Success(dtos);
         }
     }
 }
