@@ -31,7 +31,7 @@ namespace AplicationLogic.Tests
             _bgServiceMock = _fixture.Freeze<Mock<IBackgroundJobService>>();
             _emailServiceMock = _fixture.Freeze<Mock<IEmailService>>();
 
-            _sut = new ReserveService(_reserveRepoMock.Object, _emailServiceMock.Object, _bgServiceMock.Object);
+            /*_sut = new ReserveService(_reserveRepoMock.Object, _emailServiceMock.Object, _bgServiceMock.Object);*/
         }
 
         [Fact]

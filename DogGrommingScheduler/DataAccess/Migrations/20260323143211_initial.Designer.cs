@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ContextDB))]
-    [Migration("20260311204928_inicial")]
-    partial class inicial
+    [Migration("20260323143211_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,10 +30,6 @@ namespace DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -363,26 +359,22 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessLogic.Entities.Schedule", "Schedule")
+                    b.HasOne("BusinessLogic.Entities.Schedule", null)
                         .WithMany("Reservations")
                         .HasForeignKey("ScheduleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Client");
-
-                    b.Navigation("Schedule");
                 });
 
             modelBuilder.Entity("BusinessLogic.Entities.Schedule", b =>
                 {
-                    b.HasOne("BusinessLogic.Entities.PetGroomer", "Groomer")
+                    b.HasOne("BusinessLogic.Entities.PetGroomer", null)
                         .WithMany("Schedules")
                         .HasForeignKey("PetGroomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Groomer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

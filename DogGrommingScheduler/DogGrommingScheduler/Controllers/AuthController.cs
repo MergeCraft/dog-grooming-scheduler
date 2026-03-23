@@ -14,18 +14,18 @@ public class AuthController : ControllerBase
 	}
 
 	[HttpPost("register")]
-	public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+	public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
 	{
-		var errors = await _authService.RegisterAsync(request);
+		var result = await _authService.RegisterAsync(request);
 
-		if (errors != null)
-			return Conflict(new { messages = errors });
+		if (result.IsFailure)
+			return BadRequest(result.Errors);
 
-		return Ok(new { message = "Usuario creado exitosamente" });
+		return Ok(result);
 	}
 
 	[HttpPost("login")]
-	public async Task<IActionResult> Login([FromBody] LoginRequest request)
+	public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
 	{
 		var response = await _authService.LoginAsync(request);
 
