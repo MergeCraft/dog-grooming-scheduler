@@ -2,7 +2,7 @@ name: Deploy Backend API to AWS Elastic Beanstalk
 
 # 1. TRIGGER: When this workflow should run
 on:
-    workflow_dispatch:
+  workflow_dispatch:
   push:
     branches:
       - main
