@@ -1,0 +1,110 @@
+﻿@page "/"
+@using System.ComponentModel.DataAnnotations
+@using BlazorClient.Services.Auth
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+
+<PageTitle>Login</PageTitle>
+
+<div class="container py-4">
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<h3 class="card-title mb-3">Sign in</h3>
+
+					@if (!string.IsNullOrEmpty(errorMessage))
+					{
+						<div class="alert alert-danger" role="alert">
+							@errorMessage
+						</div>
+					}
+					else if (loginSuccess)
+					{
+						<div class="alert alert-success" role="alert">
+							Redirecting to dashboard...
+						</div>
+					}
+
+					<EditForm Model="loginModel" OnValidSubmit="HandleValidSubmit">
+						<DataAnnotationsValidator />
+						<ValidationSummary />
+
+						<div class="mb-3">
+							<label class="form-label">Email</label>
+							<InputText class="form-control" type="email" @bind-Value="loginModel.Email" />
+							<ValidationMessage For="@(() => loginModel.Email)" />
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label">Password</label>
+							<InputText class="form-control" type="password" @bind-Value="loginModel.Password" />
+							<ValidationMessage For="@(() => loginModel.Password)" />
+						</div>
+
+						<div class="d-flex align-items-center justify-content-between">
+							<button type="submit" class="btn btn-primary" disabled="@isSubmitting">
+								@if (isSubmitting)
+								{
+									<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+									<span class="ms-2">Signing in...</span>
+								}
+								else
+								{
+									<span>Sign in</span>
+								}
+							</button>
+						</div>
+						<div class="d-flex align-items-center justify-content-between">
+							<NavLink class="btn btn-link" href="registro">Don't have an account? Sign up here</NavLink>
+						</div>
+					</EditForm>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@code {
+	private LoginModel loginModel = new();
+	private bool isSubmitting;
+	private bool loginSuccess;
+	private string? errorMessage;
+
+	private async Task HandleValidSubmit()
+	{
+		errorMessage = null;
+		loginSuccess = false;
+		isSubmitting = true;
+
+		var request = new Shared.DTOs.LoginRequestDto
+		{
+			Email = loginModel.Email!,
+			Password = loginModel.Password!
+		};
+
+		var error = await AuthService.LoginAsync(request);
+
+		if (error is not null)
+		{
+			errorMessage = error;
+		}
+		else
+		{
+			loginSuccess = true;
+			Navigation.NavigateTo("/reserve");
+		}
+
+		isSubmitting = false;
+	}
+
+	public class LoginModel
+	{
+		[Required(ErrorMessage = "Email is required.")]
+		[EmailAddress(ErrorMessage = "The email is not a valid email address.")]
+		public string? Email { get; set; }
+
+		[Required(ErrorMessage = "Password is required.")]
+		public string? Password { get; set; }
+	}
+}

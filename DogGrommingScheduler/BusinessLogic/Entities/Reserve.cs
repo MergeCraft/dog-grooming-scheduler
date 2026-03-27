@@ -1,33 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace BusinessLogic.Entities
 {
-    internal enum DogSize
+    public enum DogSize
     {
         Small,
         Medium,
         Large
     }
 
-    internal class Reserve
+    public class Reserve
     {
         public Guid Id { get; set; }
-
-        // FechaReserva
         public DateTime ReservationDate { get; set; }
+        public TimeSpan TimeSlot { get; set; } // The exact start time (e.g., 10:30 AM)
 
-        // Horario (time of the reservation)
-        public TimeSpan TimeSlot { get; set; }
+        public Guid ScheduleId { get; set; }
 
-        // Peluquero
-        public PetGroomer Groomer { get; set; }
-
-        // Cliente
+        public Guid ClientId { get; set; }
         public Client Client { get; set; }
 
-        // TipoDePerro (small, medium or large)
         public DogSize PetSize { get; set; }
+        public bool IsCanceled { get; set; } = false;
+        public string ReminderJobId { get; set; }
     }
 }

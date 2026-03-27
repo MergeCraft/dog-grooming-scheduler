@@ -1,0 +1,61 @@
+name: Deploy Backend API to AWS Elastic Beanstalk
+
+# 1. TRIGGER: When this workflow should run
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Trigger on changes within the solution folder...
+      - 'DogGrommingScheduler/**'
+      # ...BUT ignore changes in the frontend folder
+      - '!DogGrommingScheduler/BlazorClient/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 2. GET THE CODE
+    - name: Checkout source code
+      uses: actions/checkout@v4
+
+    # 3. SETUP .NET 10 ENVIRONMENT
+    - name: Setup .NET 10
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    # 4. RESTORE AND BUILD THE API PROJECT
+    # This will automatically restore and build referenced projects (AplicationLogic, DataAccess, etc.)
+    - name: Restore dependencies
+      run: dotnet restore ./DogGrommingScheduler/DogGrommingScheduler/DogGrommingScheduler.csproj
+
+    - name: Build project
+      run: dotnet build ./DogGrommingScheduler/DogGrommingScheduler/DogGrommingScheduler.csproj -c Release --no-restore
+
+    # 5. AUTOMATED TESTS (Fail-fast mechanism)
+    - name: Run unit tests
+      run: dotnet test ./DogGrommingScheduler/AplicationLogic.Tests/AplicationLogic.Tests.csproj -c Release --verbosity normal
+
+    # 6. PUBLISH THE APPLICATION
+    - name: Publish API
+      run: dotnet publish ./DogGrommingScheduler/DogGrommingScheduler/DogGrommingScheduler.csproj -c Release -o ./publish
+
+    # 7. PACKAGE INTO A ZIP FILE (Required format for Elastic Beanstalk)
+    - name: Create ZIP deployment package
+      run: |
+        cd publish
+        zip -r ../api-deploy.zip .
+
+    # 8. DEPLOY TO AWS ELASTIC BEANSTALK
+    - name: Deploy to Elastic Beanstalk
+      uses: einaregilsson/beanstalk-deploy@v22
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        region: ${{ secrets.AWS_REGION }}
+        application_name: api-dog-grommer-calendar
+        environment_name: API-dog-grommer-calendar-env
+        version_label: "v-${{ github.run_number }}-${{ github.sha }}"
+        deployment_package: api-deploy.zip
