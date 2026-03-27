@@ -19,7 +19,7 @@ namespace BlazorClient.Services.Auth
 
 		// Sends login credentials to the API and stores the returned JWT on success.
 		// Returns null if the credentials are invalid or the request fails.
-		public async Task<string?> LoginAsync(LoginRequest request)
+		public async Task<string?> LoginAsync(LoginRequestDto request)
 		{
 			try
 			{
@@ -28,7 +28,7 @@ namespace BlazorClient.Services.Auth
 				if (!response.IsSuccessStatusCode)
 					return "Incorrect email or password.";
 
-				var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
+				var result = await response.Content.ReadFromJsonAsync<AuthResponseDto>();
 
 				if (result?.Token is null)
 					return "Unexpected error, please try again.";
@@ -46,7 +46,7 @@ namespace BlazorClient.Services.Auth
 
 		// Sends registration data to the API.
 		// Returns null on success, or an error message string on failure.
-		public async Task<string?> RegisterAsync(RegisterRequest request)
+		public async Task<string?> RegisterAsync(RegisterRequestDto request)
 		{
 			try
 			{

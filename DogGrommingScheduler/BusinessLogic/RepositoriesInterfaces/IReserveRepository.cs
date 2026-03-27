@@ -11,5 +11,6 @@ namespace BusinessLogic.RepositoryInterfaces
     public interface IReserveRepository : IRepository<Reserve>
     {
         Task<Result> AddAsync(Reserve reserve);
+        Task<Result<IEnumerable<Reserve>>> GetByClientIdAsync(Guid clientId);
     }
 }

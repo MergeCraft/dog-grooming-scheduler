@@ -1,0 +1,244 @@
+﻿@page "/reserve"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Shared.DTOs
+@using Shared.DTOs.PetGroomerDtos
+@using BlazorClient.Services
+@using System.Security.Claims
+@inject PetGroomerService PetGroomerService
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager Navigation
+@inject ReserveService ReserveService
+@attribute [Authorize]
+
+<PageTitle>Reserve</PageTitle>
+
+<div class="container mt-4">
+    <h3 class="mb-4">Select a Professional</h3>
+
+    @if (groomers == null)
+    {
+        <div class="text-center">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p>Loading professionals...</p>
+        </div>
+    }
+    else
+    {
+        @* PASO 1: Selección de Groomer *@
+        <div class="row">
+            @foreach (var groomer in groomers)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm @(selectedGroomerId == groomer.Id ? "border-primary bg-light" : "")"
+                         @onclick="() => SelectGroomer(groomer.Id)"
+                         style="cursor: pointer; transition: 0.3s;">
+                        <div class="card-body text-center">
+                            <div class="bi bi-person-badge-fill mb-2" style="font-size: 2rem; color: #6c757d;"></div>
+                            <h5 class="card-title">@groomer.Name</h5>
+                            <p class="card-text text-muted small">Professional Groomer</p>
+                            @if (selectedGroomerId == groomer.Id)
+                            {
+                                <span class="badge bg-primary text-white">Selected</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @* PASO 2: Selección de Fecha y Horarios *@
+        @if (selectedGroomerId != Guid.Empty)
+        {
+            <div class="mt-4 p-4 border rounded bg-white shadow-sm">
+                <h4 class="mb-3">Select Date & Time for @groomers.First(g => g.Id == selectedGroomerId).Name</h4>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label font-weight-bold">Choose a Date</label>
+                        <input type="date" class="form-control"
+                               min="@DateTime.Now.ToString("yyyy-MM-dd")"
+                               @onchange="OnDateChanged" />
+                    </div>
+                </div>
+
+                @if (isLoadingSchedule)
+                {
+                    <div class="mt-4 text-center">
+                        <div class="spinner-border spinner-border-sm text-secondary" role="status"></div>
+                        <span> Checking availability...</span>
+                    </div>
+                }
+                else if (selectedSchedule != null)
+                {
+                    <div class="mt-4">
+                        <h5>Available Slots</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            @foreach (var slot in GenerateSlots())
+                            {
+                                var isOccupied = IsSlotOccupied(slot);
+                                <button class="btn @(selectedTime == slot ? "btn-primary" : "btn-outline-primary")"
+                                        @onclick="() => selectedTime = slot"
+                                        disabled="@isOccupied"
+                                        style="@(isOccupied ? "text-decoration: line-through; opacity: 0.6;" : "")">
+                                    @slot.ToString(@"hh\:mm")
+                                    @if (isOccupied)
+                                    {
+                                        <span class="ms-1 small">(Reserved)</span>
+                                    }
+                                </button>
+                            }
+                        </div>
+
+                        @* PASO 3: Tamaño de mascota y Confirmación *@
+                        @if (selectedTime != null)
+                        {
+                            <div class="mt-4 p-4 bg-light rounded border border-primary">
+                                <h5 class="mb-3 text-primary">Finalize Your Reservation</h5>
+
+                                <div class="row g-3 align-items-end">
+                                    <div class="col-md-6">
+                                        <label class="form-label font-weight-bold">Dog Size</label>
+                                        <select class="form-select" @bind="selectedSize">
+                                            @foreach (var size in Enum.GetValues<DogSize>())
+                                            {
+                                                <option value="@size">@size</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-12 mt-4 text-center">
+                                        <div class="alert alert-info d-inline-block px-5">
+                                            <strong>Summary:</strong> @selectedDate.ToShortDateString() at @selectedTime.Value.ToString(@"hh\:mm")
+                                            <br /> Professional: @groomers.First(g => g.Id == selectedGroomerId).Name
+                                        </div>
+                                        <br />
+                                        <button class="btn btn-success btn-lg px-5 shadow mt-2"
+                                                @onclick="ConfirmAppointment"
+                                                disabled="@isSubmitting">
+                                            @if (isSubmitting)
+                                            {
+                                                <span class="spinner-border spinner-border-sm"></span>
+                                            }
+                                            Confirm Appointment
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else if (hasSearched)
+                {
+                    <div class="alert alert-warning mt-4">
+                        No available schedule found for this professional on the selected date.
+                    </div>
+                }
+            </div>
+        }
+    }
+</div>
+
+@code {
+    private List<PetGroomerDto>? groomers;
+    private Guid selectedGroomerId = Guid.Empty;
+    private ScheduleDto? selectedSchedule;
+    private bool isLoadingSchedule = false;
+    private bool isSubmitting = false;
+    private bool hasSearched = false;
+    private DateTime selectedDate;
+    private TimeSpan? selectedTime;
+    private DogSize selectedSize = DogSize.Small;
+
+    protected override async Task OnInitializedAsync()
+    {
+        groomers = await PetGroomerService.GetAllGroomersAsync();
+    }
+
+    private bool IsSlotOccupied(TimeSpan slot)
+    {
+        if (selectedSchedule?.OccupiedSlots == null) return false;
+        return selectedSchedule.OccupiedSlots.Any(o => o.Hours == slot.Hours && o.Minutes == slot.Minutes);
+    }
+
+    private void SelectGroomer(Guid id)
+    {
+        selectedGroomerId = id;
+        selectedSchedule = null;
+        hasSearched = false;
+        selectedTime = null;
+    }
+
+    private async Task OnDateChanged(ChangeEventArgs e)
+    {
+        if (DateTime.TryParse(e.Value?.ToString(), out var date))
+        {
+            selectedDate = date;
+            selectedTime = null;
+            isLoadingSchedule = true;
+            hasSearched = true;
+            selectedSchedule = await PetGroomerService.GetScheduleAsync(selectedGroomerId, date);
+            isLoadingSchedule = false;
+        }
+    }
+
+    private List<TimeSpan> GenerateSlots()
+    {
+        if (selectedSchedule == null) return new();
+        var slots = new List<TimeSpan>();
+        var current = selectedSchedule.StartTime.TimeOfDay;
+        var end = selectedSchedule.EndTime.TimeOfDay;
+
+        while (current < end)
+        {
+            slots.Add(current);
+            current = current.Add(TimeSpan.FromHours(1));
+        }
+        return slots;
+    }
+
+    private async Task ConfirmAppointment()
+    {
+        isSubmitting = true;
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            // 1. Buscamos los claims manualmente para asegurar que no sean null
+            var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                              ?? user.FindFirst("sub")?.Value;
+
+            var userEmail = user.FindFirst(ClaimTypes.Email)?.Value
+                            ?? user.FindFirst("email")?.Value;
+
+            // Intentamos obtener el nombre de varios claims posibles
+            var userName = user.FindFirst(ClaimTypes.Name)?.Value
+                           ?? user.FindFirst("name")?.Value
+                           ?? user.Identity.Name;
+
+            var dto = new CreateReserveDto
+            {
+                Id = Guid.NewGuid(),
+                ReservationDate = selectedDate,
+                TimeSlot = selectedTime!.Value,
+                PetGroomerId = selectedGroomerId,
+                ScheduleId = selectedSchedule!.Id,
+                ClientId = Guid.Parse(userIdClaim!),
+                PetSize = selectedSize,
+                ClientEmail = userEmail,
+                ClientName = userName ?? "Cliente", // Backup si todo falla
+                GroomerName = groomers!.First(g => g.Id == selectedGroomerId).Name,
+                IsCanceled = false
+            };
+
+            var success = await ReserveService.CreateReserveAsync(dto);
+
+            if (success)
+            {
+                Navigation.NavigateTo("/my-reserves");
+            }
+        }
+        isSubmitting = false;
+    }
+}

@@ -1,10 +1,12 @@
-﻿using Shared.DTOs;
+﻿using BusinessLogic.Results;
+using Shared.DTOs;
+using Shared.DTOs.PetGroomerDtos;
 
 namespace AplicationLogic.ServicesInterfaces
 {
 	public interface IAuthService
 	{
-		Task<IEnumerable<string>?> RegisterAsync(RegisterRequest request);
-		Task<AuthResponse?> LoginAsync(LoginRequest request);
-	}
+		Task<Result> RegisterAsync(RegisterRequestDto request);
+		Task<AuthResponseDto?> LoginAsync(LoginRequestDto request);
+    }
 }

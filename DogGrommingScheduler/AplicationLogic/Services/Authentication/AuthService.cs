@@ -1,13 +1,15 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Shared.DTOs;
-using AplicationLogic.Mappers;
+﻿using AplicationLogic.Mappers;
 using AplicationLogic.ServicesInterfaces;
 using BusinessLogic.Entities;
+using BusinessLogic.RepositoriesInterfaces;
+using BusinessLogic.Results;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Shared.DTOs;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace AplicationLogic.Services
 {
@@ -15,44 +17,58 @@ namespace AplicationLogic.Services
 	{
 		private readonly UserManager<User> _userManager;
 		private readonly IConfiguration _config;
-
-		public AuthService(UserManager<User> userManager, IConfiguration config)
+        private readonly IClientRepository _clientRepository;
+        public AuthService(UserManager<User> userManager, IConfiguration config,IClientRepository clientRepository)
 		{
 			_userManager = userManager;
 			_config = config;
+			_clientRepository = clientRepository;
 		}
 
-		// Returns null on success, or a list of error messages on failure
-		public async Task<IEnumerable<string>?> RegisterAsync(RegisterRequest request)
+		public async Task<Result> RegisterAsync(RegisterRequestDto request)
 		{
-			var user = new User
-			{
-				UserName = request.Email,
-				Email = request.Email,
-				Name = request.Name
-			};
+            var user = new User
+            {
+                UserName = request.Email,
+                Email = request.Email,
+                Name = request.Name
+            };
 
-			// Identity hashes the password internally
-			var result = await _userManager.CreateAsync(user, request.Password);
+            var result = await _userManager.CreateAsync(user, request.Password);
 
-			if (!result.Succeeded)
-				return result.Errors.Select(e => e.Description); // return Identity's actual errors
+            if (!result.Succeeded)
+                return Result.Failure(Error.Unexpected);
 
-			// Assign role
-			await _userManager.AddToRoleAsync(user, request.Role);
-			return null; // null means success
-		}
+            await _userManager.AddToRoleAsync(user, request.Role);
 
-		public async Task<AuthResponse?> LoginAsync(LoginRequest request)
+            if (request.Role == "Client")
+            {
+                var newClient = new Client
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = user.Id, 
+                };
+
+                var clientResult = await _clientRepository.AddAsync(newClient);
+
+                if (!clientResult.IsSuccess)
+                {
+                    await _userManager.DeleteAsync(user);
+                    return Result.Failure(Error.Unexpected);
+                }
+            }
+
+            return Result.Success();
+        }
+
+		public async Task<AuthResponseDto?> LoginAsync(LoginRequestDto request)
 		{
 
 			var user = await _userManager.FindByEmailAsync(request.Email);
 			if (user == null) return null;
 
-			// Check if account is locked out
 			if (await _userManager.IsLockedOutAsync(user)) return null;
 
-			// Verify password without cookies (JWT only)
 			var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
 			if (!passwordValid)
 			{
@@ -60,7 +76,6 @@ namespace AplicationLogic.Services
 				return null;
 			}
 
-			// Reset failed attempts counter on successful login
 			await _userManager.ResetAccessFailedCountAsync(user);
 
 			var roles = await _userManager.GetRolesAsync(user);
@@ -75,7 +90,6 @@ namespace AplicationLogic.Services
 		{
 			var claims = new[]
 			{
-                // Id is string (GUID) from IdentityUser
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
 				new Claim(ClaimTypes.Email, user.Email!),
 				new Claim(ClaimTypes.Role, role),

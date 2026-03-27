@@ -1,44 +1,41 @@
-﻿using System;
-using Shared.DTOs;
+﻿using BusinessLogic.Entities;
 
 namespace Shared.DTOs.ReserveMapper
 {
     public static class CreateReserveMapper
     {
-        /// <summary>
-        /// Transforms a creation DTO into a shared Reserve model.
-        /// </summary>
-        public static ReserveDtoModel FromDto(CreateReserveDto dto)
+        public static Reserve ToEntity(CreateReserveDto dto)
         {
             if (dto == null) return null;
 
-            return new ReserveDtoModel
+            return new Reserve
             {
-                Id = Guid.NewGuid(), // Generate a new unique ID for the reserve
-                ReservationDate = dto.ReservationDate,
+                Id = dto.Id == Guid.Empty ? Guid.NewGuid() : dto.Id,
+                ReservationDate = dto.ReservationDate.Date,
                 TimeSlot = dto.TimeSlot,
                 ScheduleId = dto.ScheduleId,
                 ClientId = dto.ClientId,
-                PetSize = dto.PetSize,
-                IsCanceled = false // By default a new reserve is not canceled
+                PetSize = (BusinessLogic.Entities.DogSize)dto.PetSize,
+                IsCanceled = dto.IsCanceled,
+
+                // CORRECCIÓN: Evita el error Msg 515 al no enviar NULL a una columna requerida
+                ReminderJobId = string.Empty
             };
         }
 
-        /// <summary>
-        /// (Optional) Useful if you need to return the created reserve to the frontend
-        /// </summary>
-        public static CreateReserveDto ToDto(ReserveDtoModel entity)
+        public static CreateReserveDto FromEntity(Reserve entity)
         {
             if (entity == null) return null;
 
             return new CreateReserveDto
             {
+                Id = entity.Id,
                 ReservationDate = entity.ReservationDate,
                 TimeSlot = entity.TimeSlot,
-                PetGroomerId = entity.ScheduleId == Guid.Empty ? Guid.Empty : entity.ScheduleId,
+                ScheduleId = entity.ScheduleId,
                 ClientId = entity.ClientId,
-                PetSize = entity.PetSize,
-                ScheduleId = entity.ScheduleId
+                PetSize = (Shared.DTOs.DogSize)entity.PetSize,
+                IsCanceled = entity.IsCanceled
             };
         }
     }
