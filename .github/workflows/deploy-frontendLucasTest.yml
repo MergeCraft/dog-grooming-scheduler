@@ -44,3 +44,8 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./publish/wwwroot
         publish_branch: main-front
+
+    - name: Trigger Coolify Deploy
+      run: |
+        curl -X GET "http://100.31.44.207:8000/api/v1/deploy?uuid=lh80djb34p89iips5f125sem&force=false" \
+        -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}"
