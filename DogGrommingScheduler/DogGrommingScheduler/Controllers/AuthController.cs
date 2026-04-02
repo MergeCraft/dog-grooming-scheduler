@@ -16,12 +16,21 @@ public class AuthController : ControllerBase
 	[HttpPost("register")]
 	public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
 	{
-		var result = await _authService.RegisterAsync(request);
+     var result = await _authService.RegisterAsync(request);
 
-		if (result.IsFailure)
+		if (!result.IsSuccess)
+		{
 			return BadRequest(result.Errors);
+		}
 
-		return Ok(result);
+		var dtoForLogin = new LoginRequestDto
+		{
+			Email = request.Email,
+			Password = request.Password
+		};
+
+		return await Login(dtoForLogin);
+
 	}
 
 	[HttpPost("login")]

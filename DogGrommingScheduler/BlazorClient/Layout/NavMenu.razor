@@ -4,7 +4,7 @@
 
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">Agenda Canina</a>
+        <a class="navbar-brand" href="">Dogi Style</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,40 +12,36 @@
 </div>
 
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="nav flex-column">
-
-        @* Opción pública: Siempre se ve *@
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill" aria-hidden="true"></span> Sign in
-            </NavLink>
-        </div>
+    <nav class="nav flex-column">     
 
         @* Opciones PRIVADAS: Solo aparecen si el usuario está autenticado *@
         <AuthorizeView>
             <Authorized>
                 <div class="nav-item px-3">
-                    @* CAMBIO AQUÍ: de 'reservar' a 'reserve' *@
-                    <NavLink class="nav-link" href="reserve">
-                        <span class="bi bi-calendar-check-fill" aria-hidden="true"></span> Reserve
+                    <NavLink class="nav-link d-flex align-items-center gap-2" href="reserve">
+                        <span class="bi bi-calendar-check-fill" aria-hidden="true"></span>Reserve
                     </NavLink>
                 </div>
 
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="mis-reservas">
-                        <span class="bi bi-list-stars" aria-hidden="true"></span> My Reserves
+                    <NavLink class="nav-link d-flex align-items-center gap-2" href="mis-reservas">
+                        <span class="bi bi-list-stars" aria-hidden="true"></span>My Reserves
                     </NavLink>
                 </div>
 
                 <div class="nav-item px-3">
-                    <button class="nav-link btn btn-link w-100 text-start border-0" @onclick="HandleLogout">
-                        <span class="bi bi-box-arrow-right" aria-hidden="true"></span> Logout
+                    <button class="nav-link btn btn-link w-100 text-start border-0 d-flex align-items-center gap-2" @onclick="HandleLogout">
+                        <span class="bi bi-box-arrow-right" aria-hidden="true"></span>Logout
                     </button>
                 </div>
             </Authorized>
 
             <NotAuthorized>
-                @* Aquí puedes agregar opciones para usuarios no logueados si lo deseas *@
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link d-flex align-items-center gap-2" href="login" Match="NavLinkMatch.All">
+                        <span class="bi bi-house-door-fill" aria-hidden="true"></span> Sign in
+                    </NavLink>
+                </div>
             </NotAuthorized>
         </AuthorizeView>
 

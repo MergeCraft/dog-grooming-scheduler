@@ -163,7 +163,7 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
 	var db = scope.ServiceProvider.GetRequiredService<ContextDB>();
-	db.Database.EnsureCreated();
+	db.Database.Migrate();
 
 	var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 	string[] roles = ["Client", "Groomer", "Admin"];

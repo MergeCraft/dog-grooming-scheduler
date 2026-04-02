@@ -44,9 +44,10 @@ namespace BlazorClient.Services.Auth
 			}
 		}
 
-		// Sends registration data to the API.
-		// Returns null on success, or an error message string on failure.
-		public async Task<string?> RegisterAsync(RegisterRequestDto request)
+        // Sends registration data to the API.
+        // On success, automatically logs the user in (stores token and notifies state).
+        // Returns null on success, or an error message string on failure.
+        public async Task<string?> RegisterAsync(RegisterRequestDto request)
 		{
 			try
 			{
@@ -60,9 +61,16 @@ namespace BlazorClient.Services.Auth
 						return string.Join(", ", error.Messages);
 
 					return "Registration failed.";
-				}
+				}           
+               
+                var result = await response.Content.ReadFromJsonAsync<AuthResponseDto>();
 
-				return null; // null means success
+                if (result?.Token is null)
+                    return "Account created, but autologin failed. Please log in manually.";
+
+                await _authStateProvider.NotifyLoginAsync(result.Token);
+
+                return null; // null means success
 			}
 			catch
 			{
