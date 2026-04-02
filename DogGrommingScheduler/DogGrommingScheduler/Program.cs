@@ -9,7 +9,7 @@ using BusinessLogic.RepositoriesInterfaces;
 using BusinessLogic.RepositoryInterfaces;
 using DataAccess.Repositories;
 using Hangfire;
-using Hangfire.SqlServer;
+using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -51,8 +51,8 @@ if (enableCorsPolicy)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ContextDB>(options =>
-	options.UseSqlServer(connectionString, sqlOptions =>
-		sqlOptions.MigrationsAssembly("DataAccess")));
+	options.UseNpgsql(connectionString, npgsqlOptions =>
+		npgsqlOptions.MigrationsAssembly("DataAccess")));
 
 // Resend (Email)
 builder.Services.Configure<ResendClientOptions>(options =>
@@ -93,13 +93,11 @@ builder.Services.AddHangfire(configuration => configuration
 	.SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
 	.UseSimpleAssemblyNameTypeSerializer()
 	.UseRecommendedSerializerSettings()
-	.UseSqlServerStorage(connectionString, new SqlServerStorageOptions
-	{
-		CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-		SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-		QueuePollInterval = TimeSpan.Zero,
-		UseRecommendedIsolationLevel = true
-	}));
+	.UsePostgreSqlStorage(c => c.UseNpgsqlConnection(connectionString),
+		new PostgreSqlStorageOptions
+		{
+			PrepareSchemaIfNecessary = true
+		}));
 
 builder.Services.AddHangfireServer();
 
@@ -161,8 +159,12 @@ app.UseHangfireDashboard("/hangfire");
 
 app.MapControllers();
 
+// Auto-apply schema on startup
 using (var scope = app.Services.CreateScope())
 {
+	var db = scope.ServiceProvider.GetRequiredService<ContextDB>();
+	db.Database.EnsureCreated();
+
 	var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 	string[] roles = ["Client", "Groomer", "Admin"];
 
