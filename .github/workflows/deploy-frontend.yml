@@ -1,52 +1,50 @@
-name: Deploy Frontend Blazor to AWS S3 & CloudFront
+name: Deploy Blazor Frontend to GitHub Pages
 
-# 1. TRIGGER: When this workflow should run
 on:
   push:
     branches:
       - main
     paths:
-      # Only trigger if changes are made inside the Blazor frontend folder
       - 'DogGrommingScheduler/BlazorClient/**'
+      - 'DogGrommingScheduler/Shared/**'
+  workflow_dispatch:
 
 jobs:
-  deploy-frontend:
+  deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
-    # 2. GET THE CODE
-    - name: Checkout source code
+    - name: Checkout
       uses: actions/checkout@v4
 
-    # 3. SETUP .NET 10 ENVIRONMENT
     - name: Setup .NET 10
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
 
-    # 4. PUBLISH BLAZOR WASM
-    # Blazor WASM compiles into static files (HTML, CSS, JS, .wasm)
     - name: Publish Blazor WASM
-      run: dotnet publish ./DogGrommingScheduler/BlazorClient/BlazorClient.csproj -c Release -o ./publish-frontend
+      run: dotnet publish DogGrommingScheduler/BlazorClient/BlazorClient.csproj -c Release -o ./publish
 
-    # 5. AUTHENTICATE WITH AWS
-    # We use the official AWS action to load the credentials securely
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4
+    - name: Create Dockerfile for nginx
+      run: |
+        cat > ./publish/wwwroot/Dockerfile << 'EOF'
+        FROM nginx:alpine
+        COPY . /usr/share/nginx/html
+        RUN printf 'server {\n    listen 80;\n    location / {\n        root /usr/share/nginx/html;\n        try_files $uri $uri/ /index.html;\n    }\n}\n' > /etc/nginx/conf.d/default.conf
+        EXPOSE 80
+        EOF
+
+    - name: Deploy to main-front
+      uses: peaceiris/actions-gh-pages@v4
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./publish/wwwroot
+        publish_branch: main-front
 
-    # 6. UPLOAD FILES TO S3 BUCKET
-    # We sync ONLY the 'wwwroot' folder because it contains the final static website
-    # The '--delete' flag removes old files in S3 that no longer exist in the project
-    - name: Deploy to S3
+    - name: Trigger Coolify Deploy
       run: |
-        aws s3 sync ./publish-frontend/wwwroot s3://dog-grooming-app --delete
-
-    # 7. CLEAR CLOUDFRONT CACHE
-    # This forces CloudFront servers globally to fetch our newly uploaded files
-    - name: Invalidate CloudFront Cache
-      run: |
-        aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/*"
+        curl -X GET "http://100.31.44.207:8000/api/v1/deploy?uuid=lh80djb34p89iips5f125sem&force=false" \
+        -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}"
