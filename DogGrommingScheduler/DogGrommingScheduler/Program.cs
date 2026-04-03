@@ -130,7 +130,27 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(options =>
+{
+    // Config the reading of XML in WebAPI project
+    var apiXmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var apiXmlPath = Path.Combine(AppContext.BaseDirectory, apiXmlFile);
+
+    // Put 'true' to include comments in controllers 
+    options.IncludeXmlComments(apiXmlPath, includeControllerXmlComments: true);
+
+ 
+    var sharedXmlFile = "Shared.xml";
+    var sharedXmlPath = Path.Combine(AppContext.BaseDirectory, sharedXmlFile);
+
+    
+    if (File.Exists(sharedXmlPath))
+    {
+        options.IncludeXmlComments(sharedXmlPath);
+    }
+});
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
