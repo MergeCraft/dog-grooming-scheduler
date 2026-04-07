@@ -1,6 +1,7 @@
 ﻿using BusinessLogic.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace DataAccess.Repositories
 {
@@ -12,8 +13,13 @@ namespace DataAccess.Repositories
 		public DbSet<PetGroomer> PetGroomers { get; set; }
 		public DbSet<Reserve> Reserves { get; set; }
 		public DbSet<Schedule> Schedules { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+            base.OnConfiguring(optionsBuilder);
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 
@@ -52,9 +58,15 @@ namespace DataAccess.Repositories
 					  .HasForeignKey(r => r.ScheduleId)
 					  .OnDelete(DeleteBehavior.Restrict);
 			});
-
-			// 4. Reserve configuration
-			modelBuilder.Entity<Reserve>(entity =>
+            // Configuración para asegurar que las fechas se traten correctamente
+            modelBuilder.Entity<Schedule>(entity =>
+            {
+                entity.Property(s => s.Date).HasColumnType("timestamp with time zone");
+                entity.Property(s => s.StartTime).HasColumnType("timestamp with time zone");
+                entity.Property(s => s.EndTime).HasColumnType("timestamp with time zone");
+            });
+            // 4. Reserve configuration
+            modelBuilder.Entity<Reserve>(entity =>
 			{
 				entity.HasKey(r => r.Id);
 
@@ -66,6 +78,7 @@ namespace DataAccess.Repositories
 				entity.Property(r => r.PetSize)
 					  .HasConversion<string>();
 			});
-		}
+            DbSeeder.Seed(modelBuilder);
+        }
 	}
 }

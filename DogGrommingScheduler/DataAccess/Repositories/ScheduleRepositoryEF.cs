@@ -20,18 +20,16 @@ namespace DataAccess.Repositories
 
         public async Task<Result<Schedule?>> GetByGroomerAndDateAsync(Guid groomerId, DateTime date)
         {
-            try
-            {
-                var schedule = await _context.Schedules
-                    .Include(s => s.Reservations)
-                    .FirstOrDefaultAsync(s => s.PetGroomerId == groomerId && s.Date.Date == date.Date);
+            var dayStart = date.Date.ToUniversalTime();
+            var dayEnd = dayStart.AddDays(1);
 
-                return Result<Schedule?>.Success(schedule);
-            }
-            catch (Exception ex)
-            {
-                return Result<Schedule?>.Failure(new[] { new Error("Error.Database", ex.Message) });
-            }
+            var schedule = await _context.Schedules
+                .Include(s => s.Reservations)
+                .FirstOrDefaultAsync(s => s.PetGroomerId == groomerId
+                                       && s.Date >= dayStart
+                                       && s.Date < dayEnd);
+
+            return Result<Schedule?>.Success(schedule);
         }
 
         public async Task<Result> AddAsync(Schedule entity)

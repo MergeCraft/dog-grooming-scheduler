@@ -86,7 +86,7 @@ builder.Services.AddIdentityCore<User>(options =>
 .AddEntityFrameworkStores<ContextDB>()
 .AddSignInManager()
 .AddDefaultTokenProviders();
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 // --- 3. HANGFIRE CONFIGURATION ---
 
 builder.Services.AddHangfire(configuration => configuration

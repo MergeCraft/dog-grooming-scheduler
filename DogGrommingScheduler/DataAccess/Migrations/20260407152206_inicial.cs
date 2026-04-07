@@ -4,10 +4,12 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialPostgres : Migration
+    public partial class inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,7 +34,7 @@ namespace DataAccess.Migrations
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -221,7 +223,7 @@ namespace DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    ReservationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ReservationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     TimeSlot = table.Column<TimeSpan>(type: "interval", nullable: false),
                     ScheduleId = table.Column<Guid>(type: "uuid", nullable: false),
                     ClientId = table.Column<Guid>(type: "uuid", nullable: false),
@@ -244,6 +246,60 @@ namespace DataAccess.Migrations
                         principalTable: "Schedules",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedAt", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "G-01", 0, "CONC_01", new DateTime(2026, 4, 7, 0, 0, 0, 0, DateTimeKind.Utc), "ana@canina.com", true, false, null, "Ana Martínez", "ANA@CANINA.COM", "ANA@CANINA.COM", null, null, false, "STATIC_01", false, "ana@canina.com" },
+                    { "G-02", 0, "CONC_02", new DateTime(2026, 4, 7, 0, 0, 0, 0, DateTimeKind.Utc), "carlos@canina.com", true, false, null, "Carlos Pérez", "CARLOS@CANINA.COM", "CARLOS@CANINA.COM", null, null, false, "STATIC_02", false, "carlos@canina.com" },
+                    { "G-03", 0, "CONC_03", new DateTime(2026, 4, 7, 0, 0, 0, 0, DateTimeKind.Utc), "lucia@canina.com", true, false, null, "Lucía Gómez", "LUCIA@CANINA.COM", "LUCIA@CANINA.COM", null, null, false, "STATIC_03", false, "lucia@canina.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PetGroomers",
+                columns: new[] { "Id", "UserId" },
+                values: new object[,]
+                {
+                    { new Guid("2864b026-1c02-4e02-8a77-944aa4fa7e87"), "G-03" },
+                    { new Guid("4d1d2047-8020-473b-a293-35f6d43b0314"), "G-02" },
+                    { new Guid("4fb87e5b-89e4-488d-8f20-49299c1c3d53"), "G-01" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schedules",
+                columns: new[] { "Id", "Date", "EndTime", "PetGroomerId", "StartTime" },
+                values: new object[,]
+                {
+                    { new Guid("00000000-0000-0000-0000-000000000001"), new DateTime(2026, 4, 7, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 7, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4fb87e5b-89e4-488d-8f20-49299c1c3d53"), new DateTime(2026, 4, 7, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), new DateTime(2026, 4, 7, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 7, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4d1d2047-8020-473b-a293-35f6d43b0314"), new DateTime(2026, 4, 7, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), new DateTime(2026, 4, 7, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 7, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("2864b026-1c02-4e02-8a77-944aa4fa7e87"), new DateTime(2026, 4, 7, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000004"), new DateTime(2026, 4, 8, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 8, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4fb87e5b-89e4-488d-8f20-49299c1c3d53"), new DateTime(2026, 4, 8, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000005"), new DateTime(2026, 4, 8, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 8, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4d1d2047-8020-473b-a293-35f6d43b0314"), new DateTime(2026, 4, 8, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000006"), new DateTime(2026, 4, 8, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 8, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("2864b026-1c02-4e02-8a77-944aa4fa7e87"), new DateTime(2026, 4, 8, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000007"), new DateTime(2026, 4, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 9, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4fb87e5b-89e4-488d-8f20-49299c1c3d53"), new DateTime(2026, 4, 9, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000008"), new DateTime(2026, 4, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 9, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4d1d2047-8020-473b-a293-35f6d43b0314"), new DateTime(2026, 4, 9, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000009"), new DateTime(2026, 4, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 9, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("2864b026-1c02-4e02-8a77-944aa4fa7e87"), new DateTime(2026, 4, 9, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000010"), new DateTime(2026, 4, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 10, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4fb87e5b-89e4-488d-8f20-49299c1c3d53"), new DateTime(2026, 4, 10, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000011"), new DateTime(2026, 4, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 10, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4d1d2047-8020-473b-a293-35f6d43b0314"), new DateTime(2026, 4, 10, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000012"), new DateTime(2026, 4, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 10, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("2864b026-1c02-4e02-8a77-944aa4fa7e87"), new DateTime(2026, 4, 10, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000013"), new DateTime(2026, 4, 11, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 11, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4fb87e5b-89e4-488d-8f20-49299c1c3d53"), new DateTime(2026, 4, 11, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000014"), new DateTime(2026, 4, 11, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 11, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4d1d2047-8020-473b-a293-35f6d43b0314"), new DateTime(2026, 4, 11, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000015"), new DateTime(2026, 4, 11, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 11, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("2864b026-1c02-4e02-8a77-944aa4fa7e87"), new DateTime(2026, 4, 11, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000016"), new DateTime(2026, 4, 12, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 12, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4fb87e5b-89e4-488d-8f20-49299c1c3d53"), new DateTime(2026, 4, 12, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000017"), new DateTime(2026, 4, 12, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 12, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4d1d2047-8020-473b-a293-35f6d43b0314"), new DateTime(2026, 4, 12, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000018"), new DateTime(2026, 4, 12, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 12, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("2864b026-1c02-4e02-8a77-944aa4fa7e87"), new DateTime(2026, 4, 12, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000019"), new DateTime(2026, 4, 13, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 13, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4fb87e5b-89e4-488d-8f20-49299c1c3d53"), new DateTime(2026, 4, 13, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000020"), new DateTime(2026, 4, 13, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 13, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4d1d2047-8020-473b-a293-35f6d43b0314"), new DateTime(2026, 4, 13, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000021"), new DateTime(2026, 4, 13, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 13, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("2864b026-1c02-4e02-8a77-944aa4fa7e87"), new DateTime(2026, 4, 13, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000022"), new DateTime(2026, 4, 14, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 14, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4fb87e5b-89e4-488d-8f20-49299c1c3d53"), new DateTime(2026, 4, 14, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000023"), new DateTime(2026, 4, 14, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 14, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4d1d2047-8020-473b-a293-35f6d43b0314"), new DateTime(2026, 4, 14, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000024"), new DateTime(2026, 4, 14, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 14, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("2864b026-1c02-4e02-8a77-944aa4fa7e87"), new DateTime(2026, 4, 14, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000025"), new DateTime(2026, 4, 15, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 15, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4fb87e5b-89e4-488d-8f20-49299c1c3d53"), new DateTime(2026, 4, 15, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000026"), new DateTime(2026, 4, 15, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 15, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("4d1d2047-8020-473b-a293-35f6d43b0314"), new DateTime(2026, 4, 15, 6, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("00000000-0000-0000-0000-000000000027"), new DateTime(2026, 4, 15, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 4, 15, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("2864b026-1c02-4e02-8a77-944aa4fa7e87"), new DateTime(2026, 4, 15, 6, 0, 0, 0, DateTimeKind.Utc) }
                 });
 
             migrationBuilder.CreateIndex(
